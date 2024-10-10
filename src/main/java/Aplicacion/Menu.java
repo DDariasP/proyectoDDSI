@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Aplicacion;
 
 import Config.HibernateUtil;
-import Modelo.Monitor;
-import Modelo.Socio;
+import Modelo.*;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.*;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -101,6 +96,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton6.setText("6. Nombre de monitor por nick");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("7. Información de socio por nombre");
 
@@ -160,7 +160,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = new JFrame("1. Información de los socios (HQL)");
-        Output.run(frame);
+        Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
         try {
@@ -174,17 +174,17 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación "
-                    + e.getMessage());
+            System.out.println("Error en la recuperación " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
             }
-        }    }//GEN-LAST:event_jButton1ActionPerformed
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JFrame frame = new JFrame("2. Información de los socios (SQL Nativo)");
-        Output.run(frame);
+        Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
         try {
@@ -198,17 +198,17 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación "
-                    + e.getMessage());
+            System.out.println("Error en la recuperación " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
             }
-        }     }//GEN-LAST:event_jButton2ActionPerformed
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         JFrame frame = new JFrame("3. Información de los socios (Consulta nombrada)");
-        Output.run(frame);
+        Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
         try {
@@ -222,17 +222,17 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación "
-                    + e.getMessage());
+            System.out.println("Error en la recuperación " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
             }
-        }     }//GEN-LAST:event_jButton3ActionPerformed
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         JFrame frame = new JFrame("4. Nombre y teléfono de los socios");
-        Output.run(frame);
+        Output.run(frame, 720, 480);
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
         try {
@@ -247,47 +247,148 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación "
-                    + e.getMessage());
+            System.out.println("Error en la recuperación " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
             }
-        }     }//GEN-LAST:event_jButton4ActionPerformed
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Input input = new Input("Inserte Categoria");
+        ArrayList<Character> categorias = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT DISTINCT s.categoria FROM Socio s");
+            categorias = (ArrayList<Character>) consulta.list();
+            for (char c : categorias) {
+                System.out.println(c);
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
 
-//        JFrame frame = new JFrame("Output");
-//        Sout.run(frame);
-//        Session sesion = sessionFactory.openSession();
-//        Transaction tr = sesion.beginTransaction();
-//        try {
-//            Query consulta = sesion.createQuery("SELECT s.nombre, s.telefono FROM Socio s");
-//            ArrayList<Object[]> socios = (ArrayList<Object[]>) consulta.list();
-//            String str = String.format("%-30s %-9s\n", "Nombre", "Telefono");
-//            System.out.println(str);
-//            for (Object[] s : socios) {
-//                str = String.format("%-30s %-9s", s[0].toString(), s[1].toString());
-//                System.out.println(str);
-//            }
-//            tr.commit();
-//        } catch (Exception e) {
-//            tr.rollback();
-//            System.out.println("Error en la recuperación "
-//                    + e.getMessage());
-//        } finally {
-//            if (sesion != null && sesion.isOpen()) {
-//                sesion.close();
-//            }
-//        }
+        char cat = '-';
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Categoria:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                if (str.length() != 1) {
+                    throw new Exception();
+                } else {
+                    str = str.toUpperCase();
+                    cat = str.charAt(0);
+                    if (!categorias.contains(cat)) {
+                        throw new Exception();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Categoria no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (categorias.contains(cat)) {
+            JFrame frame = new JFrame("5. Nombre y categoría de los socios");
+            Output.run(frame, 720, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                Query consulta = sesion.createQuery("SELECT s.nombre, s.categoria FROM Socio s WHERE s.categoria = '" + cat + "'");
+                ArrayList<Object[]> socios = (ArrayList<Object[]>) consulta.list();
+                String str = String.format("%-30s %8s\n", "Nombre", "Categoria");
+                System.out.println(str);
+                for (Object[] s : socios) {
+                    str = String.format("%-30s %9s", s[0].toString(), s[1].toString());
+                    System.out.println(str);
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
      }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> nicks = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT m.nick FROM Monitor m");
+            lista = (ArrayList<String>) consulta.list();
+            for (String n : lista) {
+                System.out.println(n);
+                nicks.add(n.toUpperCase());
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+
+        String nick = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Nick:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input).toUpperCase();
+                if (!nicks.contains(str)) {
+                    throw new Exception();
+                } else {
+                    nick = str;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Nick no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (nicks.contains(nick)) {
+            JFrame frame = new JFrame("6. Nombre de monitor por nick");
+            Output.run(frame, 720, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                Query consulta = sesion.createQuery("SELECT m.nombre, m.nick FROM Monitor m WHERE m.nick = '" + nick + "'");
+                ArrayList<Object[]> socios = (ArrayList<Object[]>) consulta.list();
+                String str = String.format("%-30s %-8s\n", "Nombre", "Nick");
+                System.out.println(str);
+                for (Object[] s : socios) {
+                    str = String.format("%-30s %-8s", s[0].toString(), s[1].toString());
+                    System.out.println(str);
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

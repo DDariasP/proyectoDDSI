@@ -14,10 +14,10 @@ public class Output {
 
     private static JTextArea ta;
 
-    public static void run(JFrame jf) {
+    public static void run(JFrame jf, int ancho, int alto) {
 
         jf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        jf.setSize(2160, 480);
+        jf.setSize(ancho, alto);
 
         ta = new JTextArea();
         ta.setEditable(false);
