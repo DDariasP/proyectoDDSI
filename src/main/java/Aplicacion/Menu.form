@@ -138,11 +138,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="9. Informaci&#xf3;n de socios por categor&#xed;a (HQL)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton10">
       <Properties>
         <Property name="text" type="java.lang.String" value="10. Informaci&#xf3;n de socios por categor&#xed;a (SQL nativo)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.NamedNativeQueries;
+import org.hibernate.annotations.NamedNativeQuery;
 
 @Entity
 @Table(name = "SOCIO")
@@ -27,6 +29,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Socio.findByCorreo", query = "SELECT s FROM Socio s WHERE s.correo = :correo"),
     @NamedQuery(name = "Socio.findByFechaEntrada", query = "SELECT s FROM Socio s WHERE s.fechaEntrada = :fechaEntrada"),
     @NamedQuery(name = "Socio.findByCategoria", query = "SELECT s FROM Socio s WHERE s.categoria = :categoria")})
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "Socio.PorCategoria", query = "SELECT * FROM SOCIO S WHERE S.categoria = :categoria", resultClass = Socio.class)})
+
 public class Socio implements Serializable {
 
     private static final long serialVersionUID = 1L;

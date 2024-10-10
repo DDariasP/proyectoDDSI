@@ -117,8 +117,18 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton9.setText("9. Información de socios por categoría (HQL)");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("10. Información de socios por categoría (SQL nativo)");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -527,6 +537,135 @@ public class Menu extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        ArrayList<Character> categorias = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT DISTINCT s.categoria FROM Socio s");
+            categorias = (ArrayList<Character>) consulta.list();
+            for (char c : categorias) {
+                System.out.println(c);
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+
+        char cat = '-';
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Categoria:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                if (str.length() != 1) {
+                    throw new Exception();
+                } else {
+                    str = str.toUpperCase();
+                    cat = str.charAt(0);
+                    if (!categorias.contains(cat)) {
+                        throw new Exception();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Categoria no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (categorias.contains(cat)) {
+            JFrame frame = new JFrame("9. Información de socios por categoría (HQL)");
+            Output.run(frame, 2160, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                Query consulta = sesion.createNamedQuery("Socio.findByCategoria", Socio.class);
+                ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+                System.out.println(str);
+                for (Socio s : socios) {
+                    System.out.println(s.mostrar());
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        ArrayList<Character> categorias = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT DISTINCT s.categoria FROM Socio s");
+            categorias = (ArrayList<Character>) consulta.list();
+            for (char c : categorias) {
+                System.out.println(c);
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+
+        char cat = '-';
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Categoria:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                if (str.length() != 1) {
+                    throw new Exception();
+                } else {
+                    str = str.toUpperCase();
+                    cat = str.charAt(0);
+                    if (!categorias.contains(cat)) {
+                        throw new Exception();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Categoria no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (categorias.contains(cat)) {
+            JFrame frame = new JFrame("10. Información de socios por categoría (SQL nativo)");
+            Output.run(frame, 2160, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                Query consulta = sesion.createNamedQuery("Socio.PorCategoria", Socio.class);
+                consulta.setParameter("categoria", cat);
+                ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+                System.out.println(str);
+                for (Socio s : socios) {
+                    System.out.println(s.mostrar());
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
