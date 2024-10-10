@@ -103,8 +103,18 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton7.setText("7. Información de socio por nombre");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("8. Información de actividades por día y cuota");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("9. Información de socios por categoría (HQL)");
 
@@ -364,13 +374,11 @@ public class Menu extends javax.swing.JFrame {
             tr = sesion.beginTransaction();
             try {
                 Query consulta = sesion.createQuery("SELECT m.nombre, m.nick FROM Monitor m WHERE m.nick = '" + nick + "'");
-                ArrayList<Object[]> socios = (ArrayList<Object[]>) consulta.list();
+                Object[] m = (Object[]) consulta.getSingleResult();
                 String str = String.format("%-30s %-8s\n", "Nombre", "Nick");
                 System.out.println(str);
-                for (Object[] s : socios) {
-                    str = String.format("%-30s %-8s", s[0].toString(), s[1].toString());
-                    System.out.println(str);
-                }
+                str = String.format("%-30s %-8s", m[0].toString(), m[1].toString());
+                System.out.println(str);
                 tr.commit();
             } catch (Exception e) {
                 tr.rollback();
@@ -383,12 +391,148 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> nombres = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT s.nombre FROM Socio s");
+            lista = (ArrayList<String>) consulta.list();
+            for (String n : lista) {
+                System.out.println(n);
+                nombres.add(n.toUpperCase());
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+
+        String nombre = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Nombre:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input).toUpperCase();
+                if (!nombres.contains(str)) {
+                    throw new Exception();
+                } else {
+                    nombre = str;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Nombre no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (nombres.contains(nombre)) {
+            JFrame frame = new JFrame("7. Información de socio por nombre");
+            Output.run(frame, 2160, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                Query consulta = sesion.createQuery("FROM Socio s WHERE s.nombre = '" + nombre + "'");
+                Socio s = (Socio) consulta.getSingleResult();
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+                System.out.println(str);
+                System.out.println(s.mostrar());
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        ArrayList<String> dias = new ArrayList<>();
+        ArrayList<String> listaD = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT DISTINCT a.dia FROM Actividad a");
+            listaD = (ArrayList<String>) consulta.getResultList();
+            for (String d : listaD) {
+                System.out.println(d);
+                dias.add(d.toUpperCase());
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+
+        String dia = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Dia:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input).toUpperCase();
+                if (!dias.contains(str)) {
+                    throw new Exception();
+                } else {
+                    dia = str;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Dia no valido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        int cuota = 0;
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Cuota:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                int ct = Integer.parseInt(str);
+                cuota = ct;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Cuota no valida.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        ArrayList<Actividad> actividades = new ArrayList<>();
+        if (dias.contains(dia)) {
+            JFrame frame = new JFrame("8. Información de actividades por día y cuota");
+            Output.run(frame, 1200, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                Query consulta = sesion.createQuery("FROM Actividad a WHERE a.dia = '" + dia + "' AND a.precioBaseMes > " + cuota);
+                actividades = (ArrayList<Actividad>) consulta.getResultList();
+                String str = String.format("%-4s %-15s %-9s %-4s %-15s %-30s\n", "ID", "Nombre", "Dia", "Hora", "PrecioBaseMes", "MonitorResponsable");
+                System.out.println(str);
+                for (Actividad a : actividades) {
+                    System.out.println(a.mostrar());
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

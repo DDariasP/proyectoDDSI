@@ -73,13 +73,14 @@ public class Actividad implements Serializable {
         this.precioBaseMes = precioBaseMes;
     }
 
-    public Actividad(String idActividad, String nombre, String dia, int hora, String descripcion, int precioBaseMes) {
+    public Actividad(String idActividad, String nombre, String dia, int hora, String descripcion, int precioBaseMes, Monitor monitorResponsable) {
         this.idActividad = idActividad;
         this.nombre = nombre;
         this.dia = dia;
         this.hora = hora;
         this.descripcion = descripcion;
         this.precioBaseMes = precioBaseMes;
+        this.monitorResponsable = monitorResponsable;
     }
 
     public String getIdActividad() {
@@ -170,6 +171,11 @@ public class Actividad implements Serializable {
     @Override
     public String toString() {
         return "Modelo.Actividad[ idActividad=" + idActividad + " ]";
+    }
+
+    public String mostrar() {
+        String str = String.format("%-4s %-15s %-9s %-4d %-15d %-30s", idActividad, nombre, dia, hora, precioBaseMes, monitorResponsable.getNombre());
+        return str;
     }
 
 }

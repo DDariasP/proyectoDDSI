@@ -153,11 +153,6 @@ public class Socio implements Serializable {
         this.actividades = actividades;
     }
 
-    public String mostrar() {
-        String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %9c", numeroSocio, nombre, dni, fechaNacimiento, telefono, correo, fechaEntrada, categoria);
-        return str;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -181,6 +176,11 @@ public class Socio implements Serializable {
     @Override
     public String toString() {
         return "Modelo.Socio[ numeroSocio=" + numeroSocio + " ]";
+    }
+
+    public String mostrar() {
+        String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %9c", numeroSocio, nombre, dni, fechaNacimiento, telefono, correo, fechaEntrada, categoria);
+        return str;
     }
 
 }
