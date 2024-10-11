@@ -194,6 +194,7 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // 1. Información de los socios (HQL)
     private void jb01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb01ActionPerformed
         JFrame frame = new JFrame("1. Información de los socios (HQL)");
         Output.run(frame, 2160, 480);
@@ -218,6 +219,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb01ActionPerformed
 
+    // 2. Información de los socios (SQL Nativo)
     private void jb02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb02ActionPerformed
         JFrame frame = new JFrame("2. Información de los socios (SQL Nativo)");
         Output.run(frame, 2160, 480);
@@ -242,6 +244,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb02ActionPerformed
 
+    // 3. Información de los socios (Consulta nombrada)
     private void jb03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb03ActionPerformed
         JFrame frame = new JFrame("3. Información de los socios (Consulta nombrada)");
         Output.run(frame, 2160, 480);
@@ -266,6 +269,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb03ActionPerformed
 
+    // 4. Nombre y teléfono de los socios
     private void jb04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb04ActionPerformed
         JFrame frame = new JFrame("4. Nombre y teléfono de los socios");
         Output.run(frame, 720, 480);
@@ -291,6 +295,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb04ActionPerformed
 
+    // 5. Nombre y categoría de los socios
     private void jb05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb05ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
@@ -319,7 +324,8 @@ public class Menu extends javax.swing.JFrame {
                 if (str.length() != 1) {
                     throw new Exception();
                 } else {
-                    str = str.toUpperCase();
+                    str = Filtro.mayus(str);
+                    str = Filtro.tildes(str);
                     cat = str.charAt(0);
                     if (!categorias.contains(cat)) {
                         throw new Exception();
@@ -356,9 +362,9 @@ public class Menu extends javax.swing.JFrame {
         }
      }//GEN-LAST:event_jb05ActionPerformed
 
+    // 6. Nombre de monitor por nick
     private void jb06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb06ActionPerformed
         ArrayList<String> lista = new ArrayList<>();
-        ArrayList<String> nicks = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
         try {
@@ -366,7 +372,6 @@ public class Menu extends javax.swing.JFrame {
             lista = (ArrayList<String>) consulta.list();
             for (String n : lista) {
                 System.out.println(n);
-                nicks.add(n.toUpperCase());
             }
             tr.commit();
         } catch (Exception e) {
@@ -377,12 +382,16 @@ public class Menu extends javax.swing.JFrame {
                 sesion.close();
             }
         }
+        ArrayList<String> nicks = Filtro.listaMayus(lista);
+        nicks = Filtro.listaTildes(nicks);
 
         String nick = "";
         try {
             Object input = JOptionPane.showInputDialog(this, "Nick:", "Input", JOptionPane.QUESTION_MESSAGE);
             if (input != null) {
-                String str = String.valueOf(input).toUpperCase();
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
                 if (!nicks.contains(str)) {
                     throw new Exception();
                 } else {
@@ -401,7 +410,7 @@ public class Menu extends javax.swing.JFrame {
             try {
                 Query consulta = sesion.createQuery("SELECT m.nombre, m.nick FROM Monitor m WHERE m.nick = '" + nick + "'");
                 Object[] m = (Object[]) consulta.getSingleResult();
-                String str = String.format("%-30s %-8s\n", "Nombre", "Nick");
+                String str = String.format("%-35s %-8s\n", "Nombre", "Nick");
                 System.out.println(str);
                 str = String.format("%-35s %-8s", m[0].toString(), m[1].toString());
                 System.out.println(str);
@@ -417,9 +426,9 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb06ActionPerformed
 
+    // 7. Información de socio por nombre
     private void jb07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb07ActionPerformed
         ArrayList<String> lista = new ArrayList<>();
-        ArrayList<String> nombres = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
         try {
@@ -427,7 +436,6 @@ public class Menu extends javax.swing.JFrame {
             lista = (ArrayList<String>) consulta.list();
             for (String n : lista) {
                 System.out.println(n);
-                nombres.add(n.toUpperCase());
             }
             tr.commit();
         } catch (Exception e) {
@@ -438,12 +446,16 @@ public class Menu extends javax.swing.JFrame {
                 sesion.close();
             }
         }
+        ArrayList<String> nombres = Filtro.listaMayus(lista);
+        nombres = Filtro.listaTildes(nombres);
 
         String nombre = "";
         try {
             Object input = JOptionPane.showInputDialog(this, "Nombre:", "Input", JOptionPane.QUESTION_MESSAGE);
             if (input != null) {
-                String str = String.valueOf(input).toUpperCase();
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
                 if (!nombres.contains(str)) {
                     throw new Exception();
                 } else {
@@ -477,17 +489,16 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb07ActionPerformed
 
+    // 8. Información de actividades por día y cuota
     private void jb08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb08ActionPerformed
-        ArrayList<String> dias = new ArrayList<>();
-        ArrayList<String> listaD = new ArrayList<>();
+        ArrayList<String> lista = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
         try {
             Query consulta = sesion.createQuery("SELECT DISTINCT a.dia FROM Actividad a");
-            listaD = (ArrayList<String>) consulta.getResultList();
-            for (String d : listaD) {
+            lista = (ArrayList<String>) consulta.getResultList();
+            for (String d : lista) {
                 System.out.println(d);
-                dias.add(d.toUpperCase());
             }
             tr.commit();
         } catch (Exception e) {
@@ -498,12 +509,16 @@ public class Menu extends javax.swing.JFrame {
                 sesion.close();
             }
         }
+        ArrayList<String> dias = Filtro.listaMayus(lista);
+        dias = Filtro.listaTildes(dias);
 
         String dia = "";
         try {
             Object input = JOptionPane.showInputDialog(this, "Día:", "Input", JOptionPane.QUESTION_MESSAGE);
             if (input != null) {
-                String str = String.valueOf(input).toUpperCase();
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
                 if (!dias.contains(str)) {
                     throw new Exception();
                 } else {
@@ -537,7 +552,7 @@ public class Menu extends javax.swing.JFrame {
             try {
                 Query consulta = sesion.createQuery("FROM Actividad a WHERE a.dia = '" + dia + "' AND a.precioBaseMes > " + cuota);
                 actividades = (ArrayList<Actividad>) consulta.getResultList();
-                String str = String.format("%-4s %-15s %-9s %-4s %-15s %-30s\n", "ID", "Nombre", "Día", "Hora", "PrecioBaseMes", "MonitorResponsable");
+                String str = String.format("%-4s %-15s %-9s %-5s %-15s %-30s\n", "ID", "Nombre", "Día", "Hora", "PrecioBaseMes", "MonitorResponsable");
                 System.out.println(str);
                 for (Actividad a : actividades) {
                     System.out.println(a.mostrar());
@@ -554,6 +569,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb08ActionPerformed
 
+    // 9. Información de socios por categoría (HQL)
     private void jb09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb09ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
@@ -582,7 +598,8 @@ public class Menu extends javax.swing.JFrame {
                 if (str.length() != 1) {
                     throw new Exception();
                 } else {
-                    str = str.toUpperCase();
+                    str = Filtro.mayus(str);
+                    str = Filtro.tildes(str);
                     cat = str.charAt(0);
                     if (!categorias.contains(cat)) {
                         throw new Exception();
@@ -600,6 +617,7 @@ public class Menu extends javax.swing.JFrame {
             tr = sesion.beginTransaction();
             try {
                 Query consulta = sesion.createNamedQuery("Socio.findByCategoria", Socio.class);
+                consulta.setParameter("categoria", cat);
                 ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
                 String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
                 System.out.println(str);
@@ -618,6 +636,7 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb09ActionPerformed
 
+    // 10. Información de socios por categoría (SQL nativo)
     private void jb10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb10ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
@@ -646,7 +665,8 @@ public class Menu extends javax.swing.JFrame {
                 if (str.length() != 1) {
                     throw new Exception();
                 } else {
-                    str = str.toUpperCase();
+                    str = Filtro.mayus(str);
+                    str = Filtro.tildes(str);
                     cat = str.charAt(0);
                     if (!categorias.contains(cat)) {
                         throw new Exception();

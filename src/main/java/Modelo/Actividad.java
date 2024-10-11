@@ -175,7 +175,7 @@ public class Actividad implements Serializable {
     }
 
     public String mostrar() {
-        String str = String.format("%-4s %-15s %-9s %-4d %-15d %-30s", idActividad, nombre, dia, hora, precioBaseMes, monitorResponsable.getNombre());
+        String str = String.format("%-4s %-15s %-9s %-5s %-15s %-30s", idActividad, nombre, dia, String.valueOf(hora) + ":00", String.valueOf(precioBaseMes) + "€", monitorResponsable.getNombre());
         return str;
     }
 
