@@ -36,7 +36,4 @@ public class Output {
         jf.setVisible(true);
     }
 
-    public static void clear() {
-        ta.setText("");
-    }
 }

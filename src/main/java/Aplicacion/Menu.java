@@ -12,30 +12,46 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
+ * Crea el menú.
  *
- * @author diego
+ * @author Diego Francisco Darias Pino
  */
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
     private static SessionFactory sessionFactory;
 
     public Menu() {
         sessionFactory = HibernateUtil.getSessionFactory();
         initComponents();
         getContentPane().setBackground(Color.DARK_GRAY);
-        jButton1.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton2.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton3.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton4.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton5.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton6.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton7.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton8.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton9.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jButton10.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb01.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb01.setBackground(Color.LIGHT_GRAY);
+        jb02.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb02.setBackground(Color.LIGHT_GRAY);
+        jb03.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb03.setBackground(Color.LIGHT_GRAY);
+        jb04.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb04.setBackground(Color.LIGHT_GRAY);
+        jb05.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb05.setBackground(Color.LIGHT_GRAY);
+        jb06.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb06.setBackground(Color.LIGHT_GRAY);
+        jb07.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb07.setBackground(Color.LIGHT_GRAY);
+        jb08.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb08.setBackground(Color.LIGHT_GRAY);
+        jb09.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb09.setBackground(Color.LIGHT_GRAY);
+        jb10.setFont(new Font("Monospaced", Font.BOLD, 24));
+        jb10.setBackground(Color.LIGHT_GRAY);
+        UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.BOLD, 24));
+        UIManager.put("OptionPane.messageForeground", Color.LIGHT_GRAY);
+        UIManager.put("OptionPane.buttonFont", new Font("Monospaced", Font.BOLD, 24));
+        UIManager.put("Button.background", Color.LIGHT_GRAY);
+        UIManager.put("OptionPane.background", Color.DARK_GRAY);
+        UIManager.put("Panel.background", Color.DARK_GRAY);
+        UIManager.put("TextField.font", new Font("Monospaced", Font.BOLD, 24));
+        UIManager.put("TextField.background", Color.LIGHT_GRAY);
     }
 
     /**
@@ -47,86 +63,86 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        jb01 = new javax.swing.JButton();
+        jb02 = new javax.swing.JButton();
+        jb03 = new javax.swing.JButton();
+        jb04 = new javax.swing.JButton();
+        jb05 = new javax.swing.JButton();
+        jb06 = new javax.swing.JButton();
+        jb07 = new javax.swing.JButton();
+        jb08 = new javax.swing.JButton();
+        jb09 = new javax.swing.JButton();
+        jb10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("1. Información de los socios (HQL)");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jb01.setText("1. Información de los socios (HQL)");
+        jb01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jb01ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("2. Información de los socios (SQL Nativo)");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jb02.setText("2. Información de los socios (SQL Nativo)");
+        jb02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jb02ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("3. Información de los socios (Consulta nombrada)");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jb03.setText("3. Información de los socios (Consulta nombrada)");
+        jb03.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jb03ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("4. Nombre y teléfono de los socios");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jb04.setText("4. Nombre y teléfono de los socios");
+        jb04.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jb04ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("5. Nombre y categoría de los socios");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jb05.setText("5. Nombre y categoría de los socios");
+        jb05.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jb05ActionPerformed(evt);
             }
         });
 
-        jButton6.setText("6. Nombre de monitor por nick");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jb06.setText("6. Nombre de monitor por nick");
+        jb06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jb06ActionPerformed(evt);
             }
         });
 
-        jButton7.setText("7. Información de socio por nombre");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jb07.setText("7. Información de socio por nombre");
+        jb07.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jb07ActionPerformed(evt);
             }
         });
 
-        jButton8.setText("8. Información de actividades por día y cuota");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jb08.setText("8. Información de actividades por día y cuota");
+        jb08.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jb08ActionPerformed(evt);
             }
         });
 
-        jButton9.setText("9. Información de socios por categoría (HQL)");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        jb09.setText("9. Información de socios por categoría (HQL)");
+        jb09.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                jb09ActionPerformed(evt);
             }
         });
 
-        jButton10.setText("10. Información de socios por categoría (SQL nativo)");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jb10.setText("10. Información de socios por categoría (SQL nativo)");
+        jb10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jb10ActionPerformed(evt);
             }
         });
 
@@ -137,48 +153,48 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(503, Short.MAX_VALUE))
+                    .addComponent(jb10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb01, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb02, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb03, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb04, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb05, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb06, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb07, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb08, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb09, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(479, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(jButton1)
+                .addComponent(jb01)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(jb02)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(jb03)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(jb04)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(jb05)
                 .addGap(18, 18, 18)
-                .addComponent(jButton6)
+                .addComponent(jb06)
                 .addGap(18, 18, 18)
-                .addComponent(jButton7)
+                .addComponent(jb07)
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
+                .addComponent(jb08)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9)
+                .addComponent(jb09)
                 .addGap(18, 18, 18)
-                .addComponent(jButton10)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addComponent(jb10)
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jb01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb01ActionPerformed
         JFrame frame = new JFrame("1. Información de los socios (HQL)");
         Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
@@ -186,7 +202,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createQuery("FROM Socio s", Socio.class);
             ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
-            String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+            String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
             System.out.println(str);
             for (Socio s : socios) {
                 System.out.println(s.mostrar());
@@ -200,9 +216,9 @@ public class Menu extends javax.swing.JFrame {
                 sesion.close();
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jb01ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jb02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb02ActionPerformed
         JFrame frame = new JFrame("2. Información de los socios (SQL Nativo)");
         Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
@@ -210,7 +226,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createNativeQuery("SELECT * FROM SOCIO s", Socio.class);
             ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
-            String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+            String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
             System.out.println(str);
             for (Socio s : socios) {
                 System.out.println(s.mostrar());
@@ -224,9 +240,9 @@ public class Menu extends javax.swing.JFrame {
                 sesion.close();
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jb02ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jb03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb03ActionPerformed
         JFrame frame = new JFrame("3. Información de los socios (Consulta nombrada)");
         Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
@@ -234,7 +250,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createNamedQuery("Socio.findAll", Socio.class);
             ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
-            String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+            String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
             System.out.println(str);
             for (Socio s : socios) {
                 System.out.println(s.mostrar());
@@ -248,9 +264,9 @@ public class Menu extends javax.swing.JFrame {
                 sesion.close();
             }
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jb03ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jb04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb04ActionPerformed
         JFrame frame = new JFrame("4. Nombre y teléfono de los socios");
         Output.run(frame, 720, 480);
         Session sesion = sessionFactory.openSession();
@@ -258,7 +274,7 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createQuery("SELECT s.nombre, s.telefono FROM Socio s");
             ArrayList<Object[]> socios = (ArrayList<Object[]>) consulta.list();
-            String str = String.format("%-30s %-9s\n", "Nombre", "Telefono");
+            String str = String.format("%-30s %-9s\n", "Nombre", "Teléfono");
             System.out.println(str);
             for (Object[] s : socios) {
                 str = String.format("%-30s %-9s", s[0].toString(), s[1].toString());
@@ -273,9 +289,9 @@ public class Menu extends javax.swing.JFrame {
                 sesion.close();
             }
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jb04ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jb05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb05ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -297,7 +313,7 @@ public class Menu extends javax.swing.JFrame {
 
         char cat = '-';
         try {
-            Object input = JOptionPane.showInputDialog(this, "Categoria:", "Input", JOptionPane.QUESTION_MESSAGE);
+            Object input = JOptionPane.showInputDialog(this, "Categoría:", "Input", JOptionPane.QUESTION_MESSAGE);
             if (input != null) {
                 String str = String.valueOf(input);
                 if (str.length() != 1) {
@@ -311,7 +327,7 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Categoria no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Categoría no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         if (categorias.contains(cat)) {
@@ -322,7 +338,7 @@ public class Menu extends javax.swing.JFrame {
             try {
                 Query consulta = sesion.createQuery("SELECT s.nombre, s.categoria FROM Socio s WHERE s.categoria = '" + cat + "'");
                 ArrayList<Object[]> socios = (ArrayList<Object[]>) consulta.list();
-                String str = String.format("%-30s %8s\n", "Nombre", "Categoria");
+                String str = String.format("%-30s %8s\n", "Nombre", "Categoría");
                 System.out.println(str);
                 for (Object[] s : socios) {
                     str = String.format("%-30s %9s", s[0].toString(), s[1].toString());
@@ -338,9 +354,9 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         }
-     }//GEN-LAST:event_jButton5ActionPerformed
+     }//GEN-LAST:event_jb05ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jb06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb06ActionPerformed
         ArrayList<String> lista = new ArrayList<>();
         ArrayList<String> nicks = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
@@ -387,7 +403,7 @@ public class Menu extends javax.swing.JFrame {
                 Object[] m = (Object[]) consulta.getSingleResult();
                 String str = String.format("%-30s %-8s\n", "Nombre", "Nick");
                 System.out.println(str);
-                str = String.format("%-30s %-8s", m[0].toString(), m[1].toString());
+                str = String.format("%-35s %-8s", m[0].toString(), m[1].toString());
                 System.out.println(str);
                 tr.commit();
             } catch (Exception e) {
@@ -399,9 +415,9 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jb06ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jb07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb07ActionPerformed
         ArrayList<String> lista = new ArrayList<>();
         ArrayList<String> nombres = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
@@ -446,7 +462,7 @@ public class Menu extends javax.swing.JFrame {
             try {
                 Query consulta = sesion.createQuery("FROM Socio s WHERE s.nombre = '" + nombre + "'");
                 Socio s = (Socio) consulta.getSingleResult();
-                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
                 System.out.println(str);
                 System.out.println(s.mostrar());
                 tr.commit();
@@ -459,9 +475,9 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jb07ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jb08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb08ActionPerformed
         ArrayList<String> dias = new ArrayList<>();
         ArrayList<String> listaD = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
@@ -485,7 +501,7 @@ public class Menu extends javax.swing.JFrame {
 
         String dia = "";
         try {
-            Object input = JOptionPane.showInputDialog(this, "Dia:", "Input", JOptionPane.QUESTION_MESSAGE);
+            Object input = JOptionPane.showInputDialog(this, "Día:", "Input", JOptionPane.QUESTION_MESSAGE);
             if (input != null) {
                 String str = String.valueOf(input).toUpperCase();
                 if (!dias.contains(str)) {
@@ -495,7 +511,7 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Dia no valido.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Día no válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         int cuota = 0;
@@ -509,7 +525,7 @@ public class Menu extends javax.swing.JFrame {
                 throw new Exception();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Cuota no valida.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Cuota no válida.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         ArrayList<Actividad> actividades = new ArrayList<>();
@@ -521,7 +537,7 @@ public class Menu extends javax.swing.JFrame {
             try {
                 Query consulta = sesion.createQuery("FROM Actividad a WHERE a.dia = '" + dia + "' AND a.precioBaseMes > " + cuota);
                 actividades = (ArrayList<Actividad>) consulta.getResultList();
-                String str = String.format("%-4s %-15s %-9s %-4s %-15s %-30s\n", "ID", "Nombre", "Dia", "Hora", "PrecioBaseMes", "MonitorResponsable");
+                String str = String.format("%-4s %-15s %-9s %-4s %-15s %-30s\n", "ID", "Nombre", "Día", "Hora", "PrecioBaseMes", "MonitorResponsable");
                 System.out.println(str);
                 for (Actividad a : actividades) {
                     System.out.println(a.mostrar());
@@ -536,9 +552,9 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jb08ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jb09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb09ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -560,7 +576,7 @@ public class Menu extends javax.swing.JFrame {
 
         char cat = '-';
         try {
-            Object input = JOptionPane.showInputDialog(this, "Categoria:", "Input", JOptionPane.QUESTION_MESSAGE);
+            Object input = JOptionPane.showInputDialog(this, "Categoría:", "Input", JOptionPane.QUESTION_MESSAGE);
             if (input != null) {
                 String str = String.valueOf(input);
                 if (str.length() != 1) {
@@ -574,7 +590,7 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Categoria no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Categoría no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         if (categorias.contains(cat)) {
@@ -585,7 +601,7 @@ public class Menu extends javax.swing.JFrame {
             try {
                 Query consulta = sesion.createNamedQuery("Socio.findByCategoria", Socio.class);
                 ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
-                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
                 System.out.println(str);
                 for (Socio s : socios) {
                     System.out.println(s.mostrar());
@@ -600,9 +616,9 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_jb09ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void jb10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb10ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -624,7 +640,7 @@ public class Menu extends javax.swing.JFrame {
 
         char cat = '-';
         try {
-            Object input = JOptionPane.showInputDialog(this, "Categoria:", "Input", JOptionPane.QUESTION_MESSAGE);
+            Object input = JOptionPane.showInputDialog(this, "Categoría:", "Input", JOptionPane.QUESTION_MESSAGE);
             if (input != null) {
                 String str = String.valueOf(input);
                 if (str.length() != 1) {
@@ -638,7 +654,7 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Categoria no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Categoría no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         if (categorias.contains(cat)) {
@@ -650,7 +666,7 @@ public class Menu extends javax.swing.JFrame {
                 Query consulta = sesion.createNamedQuery("Socio.PorCategoria", Socio.class);
                 consulta.setParameter("categoria", cat);
                 ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
-                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Numero", "Nombre", "DNI", "FechaNac", "Telefono", "Correo", "FechaEnt", "Categoria");
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
                 System.out.println(str);
                 for (Socio s : socios) {
                     System.out.println(s.mostrar());
@@ -665,25 +681,22 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_jb10ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton jb01;
+    private javax.swing.JButton jb02;
+    private javax.swing.JButton jb03;
+    private javax.swing.JButton jb04;
+    private javax.swing.JButton jb05;
+    private javax.swing.JButton jb06;
+    private javax.swing.JButton jb07;
+    private javax.swing.JButton jb08;
+    private javax.swing.JButton jb09;
+    private javax.swing.JButton jb10;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,10 @@
 package Aplicacion;
 
+/**
+ * Inicio de la aplicación.
+ *
+ * @author Diego Francisco Darias Pino
+ */
 public class ProyectoDDSI {
 
     public static void main(String[] args) {

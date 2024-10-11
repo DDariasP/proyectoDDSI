@@ -166,4 +166,9 @@ public class Monitor implements Serializable {
         return "Modelo.Monitor[ codMonitor=" + codMonitor + " ]";
     }
 
+    public String mostrar() {
+        String str = String.format("%-6s %-35s %-9s %-9s %-32s %-10s %-8s", codMonitor, nombre, dni, telefono, correo, fechaEntrada, nick);
+        return str;
+    }
+
 }
