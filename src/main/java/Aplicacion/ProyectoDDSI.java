@@ -11,6 +11,7 @@ public class ProyectoDDSI {
 
         Menu m = new Menu();
         m.setTitle("DDSI - Práctica 1");
+        m.setBounds(0, 0, 1920, 1080);
         m.setVisible(true);
 
     }

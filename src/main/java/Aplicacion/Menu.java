@@ -3,6 +3,7 @@ package Aplicacion;
 import Config.HibernateUtil;
 import Modelo.*;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -23,27 +24,42 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         sessionFactory = HibernateUtil.getSessionFactory();
         initComponents();
-        getContentPane().setBackground(Color.DARK_GRAY);
-        jb01.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb01.setBackground(Color.LIGHT_GRAY);
-        jb02.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb02.setBackground(Color.LIGHT_GRAY);
-        jb03.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb03.setBackground(Color.LIGHT_GRAY);
-        jb04.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb04.setBackground(Color.LIGHT_GRAY);
-        jb05.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb05.setBackground(Color.LIGHT_GRAY);
-        jb06.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb06.setBackground(Color.LIGHT_GRAY);
-        jb07.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb07.setBackground(Color.LIGHT_GRAY);
-        jb08.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb08.setBackground(Color.LIGHT_GRAY);
-        jb09.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb09.setBackground(Color.LIGHT_GRAY);
-        jb10.setFont(new Font("Monospaced", Font.BOLD, 24));
-        jb10.setBackground(Color.LIGHT_GRAY);
+        jb11.setName("11");
+        jb12.setName("12");
+        jb13.setName("13");
+        jb14.setName("14");
+        jb15.setName("15");
+        jb16.setName("16");
+        jb17.setName("17");
+        jb18.setName("18");
+        jb19.setName("19");
+        jb20.setName("20");
+        jb21.setName("21");
+        jb22.setName("22");
+        jb23.setName("23");
+        jb24.setName("24");
+        jb25.setName("25");
+        jb26.setName("26");
+        jb27.setName("27");
+        jb28.setName("28");
+        jb29.setName("29");
+        jb30.setName("30");
+        for (Component comp : this.getContentPane().getComponents()) {
+            String nom = comp.getName();
+            if (comp instanceof JButton && nom != null) {
+                JButton jb = (JButton) comp;
+                int num = Integer.parseInt(nom);
+                if (num % 2 == 0) {
+                    jb.setForeground(Color.BLACK);
+                    jb.setBackground(Color.LIGHT_GRAY);
+                } else {
+                    jb.setForeground(Color.WHITE);
+                    jb.setBackground(Color.DARK_GRAY);
+                }
+                jb.setFont(new Font("Monospaced", Font.BOLD, 24));
+            }
+        }
+        getContentPane().setBackground(Color.BLACK);
         UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.BOLD, 24));
         UIManager.put("OptionPane.messageForeground", Color.LIGHT_GRAY);
         UIManager.put("OptionPane.buttonFont", new Font("Monospaced", Font.BOLD, 24));
@@ -63,139 +79,226 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jb01 = new javax.swing.JButton();
-        jb02 = new javax.swing.JButton();
-        jb03 = new javax.swing.JButton();
-        jb04 = new javax.swing.JButton();
-        jb05 = new javax.swing.JButton();
-        jb06 = new javax.swing.JButton();
-        jb07 = new javax.swing.JButton();
-        jb08 = new javax.swing.JButton();
-        jb09 = new javax.swing.JButton();
-        jb10 = new javax.swing.JButton();
+        jb11 = new javax.swing.JButton();
+        jb12 = new javax.swing.JButton();
+        jb13 = new javax.swing.JButton();
+        jb14 = new javax.swing.JButton();
+        jb15 = new javax.swing.JButton();
+        jb16 = new javax.swing.JButton();
+        jb17 = new javax.swing.JButton();
+        jb18 = new javax.swing.JButton();
+        jb19 = new javax.swing.JButton();
+        jb20 = new javax.swing.JButton();
+        jb21 = new javax.swing.JButton();
+        jb22 = new javax.swing.JButton();
+        jb23 = new javax.swing.JButton();
+        jb24 = new javax.swing.JButton();
+        jb25 = new javax.swing.JButton();
+        jb26 = new javax.swing.JButton();
+        jb27 = new javax.swing.JButton();
+        jb28 = new javax.swing.JButton();
+        jb29 = new javax.swing.JButton();
+        jb30 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jb01.setText("1. Información de los socios (HQL)");
-        jb01.addActionListener(new java.awt.event.ActionListener() {
+        jb11.setText("1. Información de los socios (HQL)");
+        jb11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb01ActionPerformed(evt);
+                jb11ActionPerformed(evt);
             }
         });
 
-        jb02.setText("2. Información de los socios (SQL Nativo)");
-        jb02.addActionListener(new java.awt.event.ActionListener() {
+        jb12.setText("2. Información de los socios (SQL Nativo)");
+        jb12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb02ActionPerformed(evt);
+                jb12ActionPerformed(evt);
             }
         });
 
-        jb03.setText("3. Información de los socios (Consulta nombrada)");
-        jb03.addActionListener(new java.awt.event.ActionListener() {
+        jb13.setText("3. Información de los socios (Consulta nombrada)");
+        jb13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb03ActionPerformed(evt);
+                jb13ActionPerformed(evt);
             }
         });
 
-        jb04.setText("4. Nombre y teléfono de los socios");
-        jb04.addActionListener(new java.awt.event.ActionListener() {
+        jb14.setText("4. Nombre y teléfono de los socios");
+        jb14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb04ActionPerformed(evt);
+                jb14ActionPerformed(evt);
             }
         });
 
-        jb05.setText("5. Nombre y categoría de los socios");
-        jb05.addActionListener(new java.awt.event.ActionListener() {
+        jb15.setText("5. Nombre y categoría de los socios");
+        jb15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb05ActionPerformed(evt);
+                jb15ActionPerformed(evt);
             }
         });
 
-        jb06.setText("6. Nombre de monitor por nick");
-        jb06.addActionListener(new java.awt.event.ActionListener() {
+        jb16.setText("6. Nombre de monitor por nick");
+        jb16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb06ActionPerformed(evt);
+                jb16ActionPerformed(evt);
             }
         });
 
-        jb07.setText("7. Información de socio por nombre");
-        jb07.addActionListener(new java.awt.event.ActionListener() {
+        jb17.setText("7. Información de socio por nombre");
+        jb17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb07ActionPerformed(evt);
+                jb17ActionPerformed(evt);
             }
         });
 
-        jb08.setText("8. Información de actividades por día y cuota");
-        jb08.addActionListener(new java.awt.event.ActionListener() {
+        jb18.setText("8. Información de actividades por día y cuota");
+        jb18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb08ActionPerformed(evt);
+                jb18ActionPerformed(evt);
             }
         });
 
-        jb09.setText("9. Información de socios por categoría (HQL)");
-        jb09.addActionListener(new java.awt.event.ActionListener() {
+        jb19.setText("9. Información de socios por categoría (HQL)");
+        jb19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb09ActionPerformed(evt);
+                jb19ActionPerformed(evt);
             }
         });
 
-        jb10.setText("10. Información de socios por categoría (SQL nativo)");
-        jb10.addActionListener(new java.awt.event.ActionListener() {
+        jb20.setText("10. Información de socios por categoría (SQL nativo)");
+        jb20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb10ActionPerformed(evt);
+                jb20ActionPerformed(evt);
             }
         });
+
+        jb21.setText("11. Inserción de socio");
+        jb21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb21ActionPerformed(evt);
+            }
+        });
+
+        jb22.setText("12. Borrado de socio por DNI");
+        jb22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb22ActionPerformed(evt);
+            }
+        });
+
+        jb23.setText("13. Actividad de la que es responsable un monitor por DNI");
+        jb23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb23ActionPerformed(evt);
+            }
+        });
+
+        jb24.setText("14. Actividades en las que está inscrito un socio por DNI");
+        jb24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb24ActionPerformed(evt);
+            }
+        });
+
+        jb25.setText("15. Socios inscritos en una actividad por actividad");
+        jb25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb25ActionPerformed(evt);
+            }
+        });
+
+        jb26.setText("16.");
+
+        jb27.setText("17.");
+
+        jb28.setText("18.");
+
+        jb29.setText("19.");
+
+        jb30.setText("20.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jb20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+                    .addComponent(jb19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jb10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb01, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb02, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb03, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb04, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb05, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb06, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb07, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb08, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jb09, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(479, Short.MAX_VALUE))
+                    .addComponent(jb21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb23, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+                    .addComponent(jb24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jb12, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addComponent(jb22, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jb01)
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb11)
+                    .addComponent(jb21))
                 .addGap(18, 18, 18)
-                .addComponent(jb02)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb12)
+                    .addComponent(jb22))
                 .addGap(18, 18, 18)
-                .addComponent(jb03)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb13)
+                    .addComponent(jb23))
                 .addGap(18, 18, 18)
-                .addComponent(jb04)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb14)
+                    .addComponent(jb24))
                 .addGap(18, 18, 18)
-                .addComponent(jb05)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb15)
+                    .addComponent(jb25))
                 .addGap(18, 18, 18)
-                .addComponent(jb06)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb16)
+                    .addComponent(jb26))
                 .addGap(18, 18, 18)
-                .addComponent(jb07)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb17)
+                    .addComponent(jb27))
                 .addGap(18, 18, 18)
-                .addComponent(jb08)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb18)
+                    .addComponent(jb28))
                 .addGap(18, 18, 18)
-                .addComponent(jb09)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb19)
+                    .addComponent(jb29))
                 .addGap(18, 18, 18)
-                .addComponent(jb10)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb20)
+                    .addComponent(jb30))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // 1. Información de los socios (HQL)
-    private void jb01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb01ActionPerformed
+    private void jb11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb11ActionPerformed
         JFrame frame = new JFrame("1. Información de los socios (HQL)");
         Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
@@ -211,16 +314,16 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
             }
         }
-    }//GEN-LAST:event_jb01ActionPerformed
+    }//GEN-LAST:event_jb11ActionPerformed
 
     // 2. Información de los socios (SQL Nativo)
-    private void jb02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb02ActionPerformed
+    private void jb12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb12ActionPerformed
         JFrame frame = new JFrame("2. Información de los socios (SQL Nativo)");
         Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
@@ -236,16 +339,16 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
             }
         }
-    }//GEN-LAST:event_jb02ActionPerformed
+    }//GEN-LAST:event_jb12ActionPerformed
 
     // 3. Información de los socios (Consulta nombrada)
-    private void jb03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb03ActionPerformed
+    private void jb13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb13ActionPerformed
         JFrame frame = new JFrame("3. Información de los socios (Consulta nombrada)");
         Output.run(frame, 2160, 480);
         Session sesion = sessionFactory.openSession();
@@ -261,16 +364,16 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación; " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
             }
         }
-    }//GEN-LAST:event_jb03ActionPerformed
+    }//GEN-LAST:event_jb13ActionPerformed
 
     // 4. Nombre y teléfono de los socios
-    private void jb04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb04ActionPerformed
+    private void jb14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb14ActionPerformed
         JFrame frame = new JFrame("4. Nombre y teléfono de los socios");
         Output.run(frame, 720, 480);
         Session sesion = sessionFactory.openSession();
@@ -287,16 +390,16 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
             }
         }
-    }//GEN-LAST:event_jb04ActionPerformed
+    }//GEN-LAST:event_jb14ActionPerformed
 
     // 5. Nombre y categoría de los socios
-    private void jb05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb05ActionPerformed
+    private void jb15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb15ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -309,7 +412,7 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
@@ -353,17 +456,17 @@ public class Menu extends javax.swing.JFrame {
                 tr.commit();
             } catch (Exception e) {
                 tr.rollback();
-                System.out.println("Error en la recuperación " + e.getMessage());
+                System.out.println("Error en la recuperación: " + e.getMessage());
             } finally {
                 if (sesion != null && sesion.isOpen()) {
                     sesion.close();
                 }
             }
         }
-     }//GEN-LAST:event_jb05ActionPerformed
+     }//GEN-LAST:event_jb15ActionPerformed
 
     // 6. Nombre de monitor por nick
-    private void jb06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb06ActionPerformed
+    private void jb16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb16ActionPerformed
         ArrayList<String> lista = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -376,7 +479,7 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
@@ -417,17 +520,17 @@ public class Menu extends javax.swing.JFrame {
                 tr.commit();
             } catch (Exception e) {
                 tr.rollback();
-                System.out.println("Error en la recuperación " + e.getMessage());
+                System.out.println("Error en la recuperación: " + e.getMessage());
             } finally {
                 if (sesion != null && sesion.isOpen()) {
                     sesion.close();
                 }
             }
         }
-    }//GEN-LAST:event_jb06ActionPerformed
+    }//GEN-LAST:event_jb16ActionPerformed
 
     // 7. Información de socio por nombre
-    private void jb07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb07ActionPerformed
+    private void jb17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb17ActionPerformed
         ArrayList<String> lista = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -440,7 +543,7 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
@@ -480,17 +583,17 @@ public class Menu extends javax.swing.JFrame {
                 tr.commit();
             } catch (Exception e) {
                 tr.rollback();
-                System.out.println("Error en la recuperación " + e.getMessage());
+                System.out.println("Error en la recuperación: " + e.getMessage());
             } finally {
                 if (sesion != null && sesion.isOpen()) {
                     sesion.close();
                 }
             }
         }
-    }//GEN-LAST:event_jb07ActionPerformed
+    }//GEN-LAST:event_jb17ActionPerformed
 
     // 8. Información de actividades por día y cuota
-    private void jb08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb08ActionPerformed
+    private void jb18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb18ActionPerformed
         ArrayList<String> lista = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -503,7 +606,7 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
@@ -560,17 +663,17 @@ public class Menu extends javax.swing.JFrame {
                 tr.commit();
             } catch (Exception e) {
                 tr.rollback();
-                System.out.println("Error en la recuperación " + e.getMessage());
+                System.out.println("Error en la recuperación: " + e.getMessage());
             } finally {
                 if (sesion != null && sesion.isOpen()) {
                     sesion.close();
                 }
             }
         }
-    }//GEN-LAST:event_jb08ActionPerformed
+    }//GEN-LAST:event_jb18ActionPerformed
 
     // 9. Información de socios por categoría (HQL)
-    private void jb09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb09ActionPerformed
+    private void jb19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb19ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -583,7 +686,7 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
@@ -627,17 +730,17 @@ public class Menu extends javax.swing.JFrame {
                 tr.commit();
             } catch (Exception e) {
                 tr.rollback();
-                System.out.println("Error en la recuperación " + e.getMessage());
+                System.out.println("Error en la recuperación: " + e.getMessage());
             } finally {
                 if (sesion != null && sesion.isOpen()) {
                     sesion.close();
                 }
             }
         }
-    }//GEN-LAST:event_jb09ActionPerformed
+    }//GEN-LAST:event_jb19ActionPerformed
 
     // 10. Información de socios por categoría (SQL nativo)
-    private void jb10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb10ActionPerformed
+    private void jb20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb20ActionPerformed
         ArrayList<Character> categorias = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
@@ -650,7 +753,7 @@ public class Menu extends javax.swing.JFrame {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            System.out.println("Error en la recuperación " + e.getMessage());
+            System.out.println("Error en la recuperación: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
                 sesion.close();
@@ -694,29 +797,155 @@ public class Menu extends javax.swing.JFrame {
                 tr.commit();
             } catch (Exception e) {
                 tr.rollback();
-                System.out.println("Error en la recuperación " + e.getMessage());
+                System.out.println("Error en la recuperación: " + e.getMessage());
             } finally {
                 if (sesion != null && sesion.isOpen()) {
                     sesion.close();
                 }
             }
         }
-    }//GEN-LAST:event_jb10ActionPerformed
+    }//GEN-LAST:event_jb20ActionPerformed
+
+    // 11. Inserción de socio
+    private void jb21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb21ActionPerformed
+        Socio s = null;
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            String nom;
+            Object input = JOptionPane.showInputDialog(this, "Nombre completo:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                nom = str;
+            } else {
+                throw new Exception();
+            }
+            String dni;
+            input = JOptionPane.showInputDialog(this, "DNI:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                dni = str;
+            } else {
+                throw new Exception();
+            }
+            s = new Socio("S0XX", nom, dni, "XX/XX/19XX", "123456789", "nombre@gmail.com", "XX/XX/2024", 'A');
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Input no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (s != null) {
+            JFrame frame = new JFrame("11. Inserción de socio");
+            Output.run(frame, 2160, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                sesion.saveOrUpdate(s);
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la inserión: " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
+                    System.out.println(str);
+                    System.out.println(s.mostrar());
+                    System.out.println("\nSocio añadido correctamente.");
+                    sesion.close();
+                }
+            }
+        }
+    }//GEN-LAST:event_jb21ActionPerformed
+
+    // 12. Borrado de socio por DNI
+    private void jb22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb22ActionPerformed
+        /*  String dni = null;
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Object input = JOptionPane.showInputDialog(this, "DNI:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                dni = str;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Input no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (s != null) {
+            JFrame frame = new JFrame("12. Borrado de socio por DNI");
+            Output.run(frame, 2160, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                sesion.saveOrUpdate(s);
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en el borrado: " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
+                    System.out.println(str);
+                    System.out.println(s.mostrar());
+                    System.out.println("\nSocio añadido correctamente.");
+                    sesion.close();
+                }
+            }
+        }*/
+
+    }//GEN-LAST:event_jb22ActionPerformed
+
+    // 13. Información de la actividad de la que es responsable un monitor por DNI
+    private void jb23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb23ActionPerformed
+
+
+
+    }//GEN-LAST:event_jb23ActionPerformed
+
+    // 14. Información de las actividades en las que está inscrito un socio por DNI
+    private void jb24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb24ActionPerformed
+
+
+    }//GEN-LAST:event_jb24ActionPerformed
+
+    // 15. Información de los socios inscritos en una actividad por nombre de la actividad
+    private void jb25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb25ActionPerformed
+
+
+    }//GEN-LAST:event_jb25ActionPerformed
 
     public static void main(String args[]) {
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jb01;
-    private javax.swing.JButton jb02;
-    private javax.swing.JButton jb03;
-    private javax.swing.JButton jb04;
-    private javax.swing.JButton jb05;
-    private javax.swing.JButton jb06;
-    private javax.swing.JButton jb07;
-    private javax.swing.JButton jb08;
-    private javax.swing.JButton jb09;
-    private javax.swing.JButton jb10;
+    private javax.swing.JButton jb11;
+    private javax.swing.JButton jb12;
+    private javax.swing.JButton jb13;
+    private javax.swing.JButton jb14;
+    private javax.swing.JButton jb15;
+    private javax.swing.JButton jb16;
+    private javax.swing.JButton jb17;
+    private javax.swing.JButton jb18;
+    private javax.swing.JButton jb19;
+    private javax.swing.JButton jb20;
+    private javax.swing.JButton jb21;
+    private javax.swing.JButton jb22;
+    private javax.swing.JButton jb23;
+    private javax.swing.JButton jb24;
+    private javax.swing.JButton jb25;
+    private javax.swing.JButton jb26;
+    private javax.swing.JButton jb27;
+    private javax.swing.JButton jb28;
+    private javax.swing.JButton jb29;
+    private javax.swing.JButton jb30;
     // End of variables declaration//GEN-END:variables
 }
