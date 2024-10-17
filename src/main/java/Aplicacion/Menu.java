@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.Font;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Set;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -406,9 +407,6 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createQuery("SELECT DISTINCT s.categoria FROM Socio s");
             categorias = (ArrayList<Character>) consulta.list();
-            for (char c : categorias) {
-                System.out.println(c);
-            }
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
@@ -473,9 +471,6 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createQuery("SELECT m.nick FROM Monitor m");
             lista = (ArrayList<String>) consulta.list();
-            for (String n : lista) {
-                System.out.println(n);
-            }
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
@@ -537,9 +532,6 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createQuery("SELECT s.nombre FROM Socio s");
             lista = (ArrayList<String>) consulta.list();
-            for (String n : lista) {
-                System.out.println(n);
-            }
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
@@ -600,9 +592,6 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createQuery("SELECT DISTINCT a.dia FROM Actividad a");
             lista = (ArrayList<String>) consulta.getResultList();
-            for (String d : lista) {
-                System.out.println(d);
-            }
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
@@ -680,9 +669,6 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createQuery("SELECT DISTINCT s.categoria FROM Socio s");
             categorias = (ArrayList<Character>) consulta.list();
-            for (char c : categorias) {
-                System.out.println(c);
-            }
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
@@ -747,9 +733,6 @@ public class Menu extends javax.swing.JFrame {
         try {
             Query consulta = sesion.createQuery("SELECT DISTINCT s.categoria FROM Socio s");
             categorias = (ArrayList<Character>) consulta.list();
-            for (char c : categorias) {
-                System.out.println(c);
-            }
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
@@ -845,15 +828,15 @@ public class Menu extends javax.swing.JFrame {
             try {
                 sesion.saveOrUpdate(s);
                 tr.commit();
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
+                System.out.println(str);
+                System.out.println(s.mostrar());
+                System.out.println("\nSocio añadido correctamente.");
             } catch (Exception e) {
                 tr.rollback();
                 System.out.println("Error en la inserión: " + e.getMessage());
             } finally {
                 if (sesion != null && sesion.isOpen()) {
-                    String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
-                    System.out.println(str);
-                    System.out.println(s.mostrar());
-                    System.out.println("\nSocio añadido correctamente.");
                     sesion.close();
                 }
             }
@@ -914,15 +897,15 @@ public class Menu extends javax.swing.JFrame {
                 s = sesion.get(Socio.class, num);
                 sesion.delete(s);
                 tr.commit();
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
+                System.out.println(str);
+                System.out.println(s.mostrar());
+                System.out.println("\nSocio borrado correctamente.");
             } catch (Exception e) {
                 tr.rollback();
                 System.out.println("Error en el borrado: " + e.getMessage());
             } finally {
                 if (sesion != null && sesion.isOpen()) {
-                    String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
-                    System.out.println(str);
-                    System.out.println(s.mostrar());
-                    System.out.println("\nSocio borrado correctamente.");
                     sesion.close();
                 }
             }
@@ -931,8 +914,72 @@ public class Menu extends javax.swing.JFrame {
 
     // 13. Actividad de la que es responsable un monitor por DNI
     private void jb23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb23ActionPerformed
+        ArrayList<String> listaCod = new ArrayList<>();
+        ArrayList<String> listaDNI = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT m.codMonitor, m.dni FROM Monitor m");
+            ArrayList<Object[]> lista = (ArrayList<Object[]>) consulta.list();
+            for (Object[] o : lista) {
+                listaCod.add((String) o[0]);
+                listaDNI.add((String) o[1]);
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación: " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+        listaDNI = Filtro.listaMayus(listaDNI);
+        listaDNI = Filtro.listaTildes(listaDNI);
 
+        String dni = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "DNI:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                if (!listaDNI.contains(str)) {
+                    throw new Exception();
+                } else {
+                    dni = str;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "DNI no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
+        Monitor m;
+        if (listaDNI.contains(dni)) {
+            JFrame frame = new JFrame("13. Actividad de la que es responsable un monitor por DNI");
+            Output.run(frame, 1200, 240);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                int pos = listaDNI.indexOf(dni);
+                String cod = listaCod.get(pos);
+                m = sesion.get(Monitor.class, cod);
+                Set<Actividad> act = m.getActividades();
+                String str = String.format("%-4s %-15s %-9s %-5s %-15s %-30s\n", "ID", "Nombre", "Día", "Hora", "PrecioBaseMes", "MonitorResponsable");
+                System.out.println(str);
+                for (Actividad a : act) {
+                    System.out.println(a.mostrar());
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación: " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
     }//GEN-LAST:event_jb23ActionPerformed
 
     // 14. Información de las actividades en las que está inscrito un socio por DNI
