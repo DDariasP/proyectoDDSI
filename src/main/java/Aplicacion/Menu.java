@@ -862,30 +862,57 @@ public class Menu extends javax.swing.JFrame {
 
     // 12. Borrado de socio por DNI
     private void jb22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb22ActionPerformed
-        /*  String dni = null;
+        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> listaDNI = new ArrayList<>();
         Session sesion = sessionFactory.openSession();
         Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT s.numeroSocio, s.dni FROM Socio s");
+            ArrayList<Object[]> socios = (ArrayList<Object[]>) consulta.list();
+            for (Object[] s : socios) {
+                lista.add((String) s[0]);
+                listaDNI.add((String) s[1]);
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación: " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+        listaDNI = Filtro.listaMayus(listaDNI);
+        listaDNI = Filtro.listaTildes(listaDNI);
+
+        String dni = "";
         try {
             Object input = JOptionPane.showInputDialog(this, "DNI:", "Input", JOptionPane.QUESTION_MESSAGE);
             if (input != null) {
                 String str = String.valueOf(input);
                 str = Filtro.mayus(str);
                 str = Filtro.tildes(str);
-                dni = str;
-            } else {
-                throw new Exception();
+                if (!listaDNI.contains(str)) {
+                    throw new Exception();
+                } else {
+                    dni = str;
+                }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Input no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "DNI no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        if (s != null) {
+        Socio s = null;
+        if (listaDNI.contains(dni)) {
             JFrame frame = new JFrame("12. Borrado de socio por DNI");
             Output.run(frame, 2160, 240);
             sesion = sessionFactory.openSession();
             tr = sesion.beginTransaction();
             try {
-                sesion.saveOrUpdate(s);
+                int pos = listaDNI.indexOf(dni);
+                String num = lista.get(pos);
+                s = sesion.get(Socio.class, num);
+                sesion.delete(s);
                 tr.commit();
             } catch (Exception e) {
                 tr.rollback();
@@ -895,17 +922,15 @@ public class Menu extends javax.swing.JFrame {
                     String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
                     System.out.println(str);
                     System.out.println(s.mostrar());
-                    System.out.println("\nSocio añadido correctamente.");
+                    System.out.println("\nSocio borrado correctamente.");
                     sesion.close();
                 }
             }
-        }*/
-
+        }
     }//GEN-LAST:event_jb22ActionPerformed
 
-    // 13. Información de la actividad de la que es responsable un monitor por DNI
+    // 13. Actividad de la que es responsable un monitor por DNI
     private void jb23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb23ActionPerformed
-
 
 
     }//GEN-LAST:event_jb23ActionPerformed
