@@ -956,7 +956,7 @@ public class Menu extends javax.swing.JFrame {
 
         Monitor m;
         if (listaDNI.contains(dni)) {
-            JFrame frame = new JFrame("13. Actividad de la que es responsable un monitor por DNI");
+            JFrame frame = new JFrame("13. Actividad de la que es responsable el monitor con DNI " + dni);
             Output.run(frame, 1200, 240);
             sesion = sessionFactory.openSession();
             tr = sesion.beginTransaction();
@@ -982,16 +982,144 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb23ActionPerformed
 
-    // 14. Información de las actividades en las que está inscrito un socio por DNI
+    // 14. Actividades en las que está inscrito un socio por DNI
     private void jb24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb24ActionPerformed
+        ArrayList<String> listaNum = new ArrayList<>();
+        ArrayList<String> listaDNI = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT s.numeroSocio, s.dni FROM Socio s");
+            ArrayList<Object[]> lista = (ArrayList<Object[]>) consulta.list();
+            for (Object[] o : lista) {
+                listaNum.add((String) o[0]);
+                listaDNI.add((String) o[1]);
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación: " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+        listaDNI = Filtro.listaMayus(listaDNI);
+        listaDNI = Filtro.listaTildes(listaDNI);
 
+        String dni = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "DNI:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                if (!listaDNI.contains(str)) {
+                    throw new Exception();
+                } else {
+                    dni = str;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "DNI no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
+        Socio s;
+        if (listaDNI.contains(dni)) {
+            JFrame frame = new JFrame("14. Actividades en las que está inscrito el socio con DNI " + dni);
+            Output.run(frame, 1200, 360);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                int pos = listaDNI.indexOf(dni);
+                String num = listaNum.get(pos);
+                s = sesion.get(Socio.class, num);
+                Set<Actividad> act = s.getActividades();
+                String str = String.format("%-4s %-15s %-9s %-5s %-15s %-30s\n", "ID", "Nombre", "Día", "Hora", "PrecioBaseMes", "MonitorResponsable");
+                System.out.println(str);
+                for (Actividad a : act) {
+                    System.out.println(a.mostrar());
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación: " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
     }//GEN-LAST:event_jb24ActionPerformed
 
-    // 15. Información de los socios inscritos en una actividad por nombre de la actividad
+    // 15. Socios inscritos en una actividad por nombre de la actividad
     private void jb25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb25ActionPerformed
+        ArrayList<String> listaCod = new ArrayList<>();
+        ArrayList<String> listaNom = new ArrayList<>();
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createQuery("SELECT a.idActividad, a.nombre FROM Actividad a");
+            ArrayList<Object[]> lista = (ArrayList<Object[]>) consulta.list();
+            for (Object[] o : lista) {
+                listaCod.add((String) o[0]);
+                listaNom.add((String) o[1]);
+            }
+            tr.commit();
+        } catch (Exception e) {
+            tr.rollback();
+            System.out.println("Error en la recuperación: " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+        listaNom = Filtro.listaMayus(listaNom);
+        listaNom = Filtro.listaTildes(listaNom);
 
+        String nom = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Actividad:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                if (!listaNom.contains(str)) {
+                    throw new Exception();
+                } else {
+                    nom = str;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Actividad no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
+        Actividad a;
+        if (listaNom.contains(nom)) {
+            JFrame frame = new JFrame("15. Socios inscritos en " + nom);
+            Output.run(frame, 2160, 480);
+            sesion = sessionFactory.openSession();
+            tr = sesion.beginTransaction();
+            try {
+                int pos = listaNom.indexOf(nom);
+                String cod = listaCod.get(pos);
+                a = sesion.get(Actividad.class, cod);
+                Set<Socio> socios = a.getSocios();
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
+                System.out.println(str);
+                for (Socio s : socios) {
+                    System.out.println(s.mostrar());
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                System.out.println("Error en la recuperación: " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
     }//GEN-LAST:event_jb25ActionPerformed
 
     public static void main(String args[]) {
