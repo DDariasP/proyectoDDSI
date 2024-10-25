@@ -260,13 +260,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="jb29">
       <Properties>
-        <Property name="text" type="java.lang.String" value="19."/>
+        <Property name="text" type="java.lang.String" value="19. Cuota que paga un socio"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb29ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jb30">
       <Properties>
-        <Property name="text" type="java.lang.String" value="20."/>
+        <Property name="text" type="java.lang.String" value="20. Socios que sean mayores de una edad"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb30ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

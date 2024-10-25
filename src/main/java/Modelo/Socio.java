@@ -118,6 +118,28 @@ public class Socio implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public int getEdad(String fecha) {
+        String[] hoy = fecha.split("/");
+        int diaH = Integer.parseInt(hoy[0]);
+        int mesH = Integer.parseInt(hoy[1]);
+        int anyoH = Integer.parseInt(hoy[2]);
+
+        String[] nac = this.fechaNacimiento.split("/");
+        int diaN = Integer.parseInt(nac[0]);
+        int mesN = Integer.parseInt(nac[1]);
+        int anyoN = Integer.parseInt(nac[2]);
+
+        int edad = anyoH - anyoN;
+        if (mesH <= mesN) {
+            if (mesH == mesN && diaH >= diaN) {
+                edad++;
+            }
+        } else {
+            edad++;
+        }
+        return edad;
+    }
+
     public String getTelefono() {
         return telefono;
     }

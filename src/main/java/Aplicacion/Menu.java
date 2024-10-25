@@ -5,10 +5,11 @@ import Modelo.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Set;
-import org.hibernate.Hibernate;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -230,9 +231,19 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jb29.setText("19.");
+        jb29.setText("19. Cuota que paga un socio");
+        jb29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb29ActionPerformed(evt);
+            }
+        });
 
-        jb30.setText("20.");
+        jb30.setText("20. Socios que sean mayores de una edad");
+        jb30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb30ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1297,6 +1308,8 @@ public class Menu extends javax.swing.JFrame {
                 JFrame frame = new JFrame("18. Horario de " + m.getDni());
                 Output.run(frame, 2160, 480);
                 System.out.println(m.getNombre() + ":\n");
+                String str = String.format("%-4s %-15s %-9s %-5s %-15s %-30s\n", "ID", "Nombre", "Día", "Hora", "PrecioBaseMes", "MonitorResponsable");
+                System.out.println(str);
                 for (Actividad a : m.getActividades()) {
                     System.out.println(a.mostrar());
                 }
@@ -1315,6 +1328,111 @@ public class Menu extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jb28ActionPerformed
+
+    // 19. Cuota que paga un socio
+    private void jb29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb29ActionPerformed
+        String codS = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Código de socio:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                codS = str;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Código no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createNamedQuery("Socio.findByNumeroSocio", Socio.class);
+            consulta.setParameter("numeroSocio", codS);
+            Socio s = (Socio) consulta.getSingleResult();
+            if (s != null) {
+                JFrame frame = new JFrame("19. Cuota que paga " + s.getNumeroSocio());
+                Output.run(frame, 2160, 480);
+                System.out.println(s.getNombre() + ":\n");
+                int total = 0;
+                String str = String.format("%-4s %-15s %-9s %-5s %-15s %-30s\n", "ID", "Nombre", "Día", "Hora", "PrecioBaseMes", "MonitorResponsable");
+                System.out.println(str);
+                for (Actividad a : s.getActividades()) {
+                    System.out.println(a.mostrar());
+                    total = total + a.getPrecioBaseMes();
+                }
+                System.out.println("\nTOTAL: " + total + "€");
+                tr.commit();
+            } else {
+                throw new Exception("Socio no encontrado");
+            }
+        } catch (Exception e) {
+            tr.rollback();
+            JFrame frame = new JFrame("Error");
+            Output.run(frame, 2160, 240);
+            System.out.println("Error en la recuperación: " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+    }//GEN-LAST:event_jb29ActionPerformed
+
+    // 20. Socios que sean mayores de una edad
+    private void jb30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb30ActionPerformed
+        int edad = -1;
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Edad de socio:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                edad = Integer.parseInt(str);
+            } else {
+                throw new Exception();
+            }
+            if (edad < 1) {
+                edad = -1;
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Edad no válida.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (edad != -1) {
+            Session sesion = sessionFactory.openSession();
+            Transaction tr = sesion.beginTransaction();
+            try {
+                Query consulta = sesion.createQuery("FROM Socio s", Socio.class);
+                ArrayList<Socio> socios = (ArrayList<Socio>) consulta.getResultList();
+                consulta = sesion.createNativeQuery("SELECT CURRENT_DATE");
+                Date fecha = (Date) consulta.getSingleResult();
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String hoy = formato.format(fecha);
+                JFrame frame = new JFrame("20. Socios que sean mayores de " + edad + " años");
+                Output.run(frame, 2160, 480);
+                System.out.println("Hoy: " + hoy + "\n");
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
+                System.out.println(str);
+                for (Socio s : socios) {
+                    int edadS = s.getEdad(hoy);
+                    if (edadS > edad) {
+                        System.out.println(s.mostrar());
+                    }
+                }
+                tr.commit();
+            } catch (Exception e) {
+                tr.rollback();
+                JFrame frame = new JFrame("Error");
+                Output.run(frame, 2160, 240);
+                System.out.println("Error en la recuperación: " + e.getMessage());
+            } finally {
+                if (sesion != null && sesion.isOpen()) {
+                    sesion.close();
+                }
+            }
+        }
+    }//GEN-LAST:event_jb30ActionPerformed
 
     public static void main(String args[]) {
 
