@@ -156,6 +156,13 @@ public class Actividad implements Serializable {
         }
     }
 
+    public void bajaSocio(Socio socio) {
+        if (this.socios.contains(socio)) {
+            this.socios.remove(socio);
+            socio.getActividades().remove(this);
+        }
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

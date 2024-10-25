@@ -244,13 +244,19 @@
     </Component>
     <Component class="javax.swing.JButton" name="jb27">
       <Properties>
-        <Property name="text" type="java.lang.String" value="17."/>
+        <Property name="text" type="java.lang.String" value="17. Baja de un socio de una actividad"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb27ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jb28">
       <Properties>
-        <Property name="text" type="java.lang.String" value="18."/>
+        <Property name="text" type="java.lang.String" value="18. Horario de un monitor por el DNI"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb28ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jb29">
       <Properties>

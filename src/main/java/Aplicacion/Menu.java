@@ -216,9 +216,19 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jb27.setText("17.");
+        jb27.setText("17. Baja de un socio de una actividad");
+        jb27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb27ActionPerformed(evt);
+            }
+        });
 
-        jb28.setText("18.");
+        jb28.setText("18. Horario de un monitor por el DNI");
+        jb28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb28ActionPerformed(evt);
+            }
+        });
 
         jb29.setText("19.");
 
@@ -1169,7 +1179,6 @@ public class Menu extends javax.swing.JFrame {
                 a.altaSocio(s);
                 sesion.saveOrUpdate(a);
                 sesion.saveOrUpdate(s);
-                tr.commit();
                 JFrame frame = new JFrame("16. Inscripción de " + s.getNumeroSocio() + " en " + a.getNombre());
                 Output.run(frame, 2160, 480);
                 System.out.println(a.getNombre() + ":\n");
@@ -1179,13 +1188,14 @@ public class Menu extends javax.swing.JFrame {
                     System.out.println(socio.mostrar());
                 }
                 System.out.println("\nSocio inscrito correctamente.");
+                tr.commit();
             } else {
-                throw new Exception("Socio/Actividad no encontrados");
+                throw new Exception("Socio/Actividad no encontrado(s)");
             }
         } catch (Exception e) {
             tr.rollback();
             JFrame frame = new JFrame("Error");
-                Output.run(frame, 2160, 240);
+            Output.run(frame, 2160, 240);
             System.out.println("Error en la inserión: " + e.getMessage());
         } finally {
             if (sesion != null && sesion.isOpen()) {
@@ -1193,6 +1203,118 @@ public class Menu extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jb26ActionPerformed
+
+    // 17. Baja de un socio de una actividad
+    private void jb27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb27ActionPerformed
+        String codS = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Código de socio:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                codS = str;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Código no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        String codA = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Código de actividad:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                codA = str;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Código no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Socio s = sesion.get(Socio.class, codS);
+            Actividad a = sesion.get(Actividad.class, codA);
+            if (s != null && a != null) {
+                a.bajaSocio(s);
+                sesion.saveOrUpdate(a);
+                sesion.saveOrUpdate(s);
+                JFrame frame = new JFrame("17. Baja de " + s.getNumeroSocio() + " de " + a.getNombre());
+                Output.run(frame, 2160, 480);
+                System.out.println(a.getNombre() + ":\n");
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
+                System.out.println(str);
+                for (Socio socio : a.getSocios()) {
+                    System.out.println(socio.mostrar());
+                }
+                System.out.println("\nSocio dado de baja correctamente.");
+                tr.commit();
+            } else {
+                throw new Exception("Socio/Actividad no encontrado(s)");
+            }
+        } catch (Exception e) {
+            tr.rollback();
+            JFrame frame = new JFrame("Error");
+            Output.run(frame, 2160, 240);
+            System.out.println("Error en la inserión: " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+    }//GEN-LAST:event_jb27ActionPerformed
+
+    // 18. Horario de un monitor por el DNI
+    private void jb28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb28ActionPerformed
+        String dniM = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "DNI de monitor:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                dniM = str;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "DNI no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Query consulta = sesion.createNamedQuery("Monitor.findByDni", Monitor.class);
+            consulta.setParameter("dni", dniM);
+            Monitor m = (Monitor) consulta.getSingleResult();
+            if (m != null) {
+                JFrame frame = new JFrame("18. Horario de " + m.getDni());
+                Output.run(frame, 2160, 480);
+                System.out.println(m.getNombre() + ":\n");
+                for (Actividad a : m.getActividades()) {
+                    System.out.println(a.mostrar());
+                }
+                tr.commit();
+            } else {
+                throw new Exception("Monitor no encontrado");
+            }
+        } catch (Exception e) {
+            tr.rollback();
+            JFrame frame = new JFrame("Error");
+            Output.run(frame, 2160, 240);
+            System.out.println("Error en la recuperación: " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+    }//GEN-LAST:event_jb28ActionPerformed
 
     public static void main(String args[]) {
 
