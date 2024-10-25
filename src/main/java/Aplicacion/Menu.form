@@ -236,8 +236,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="jb26">
       <Properties>
-        <Property name="text" type="java.lang.String" value="16."/>
+        <Property name="text" type="java.lang.String" value="16. Inscripci&#xf3;n de un socio en una actividad"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb26ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jb27">
       <Properties>

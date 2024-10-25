@@ -149,6 +149,13 @@ public class Actividad implements Serializable {
         this.monitorResponsable = monitorResponsable;
     }
 
+    public void altaSocio(Socio socio) {
+        if (!this.socios.contains(socio)) {
+            this.socios.add(socio);
+            socio.getActividades().add(this);
+        }
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

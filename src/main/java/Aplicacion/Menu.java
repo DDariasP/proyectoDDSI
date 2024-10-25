@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Set;
+import org.hibernate.Hibernate;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -208,7 +209,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jb26.setText("16.");
+        jb26.setText("16. Inscripción de un socio en una actividad");
+        jb26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb26ActionPerformed(evt);
+            }
+        });
 
         jb27.setText("17.");
 
@@ -1121,6 +1127,72 @@ public class Menu extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jb25ActionPerformed
+
+    // 16. Inscripción de un socio en una actividad
+    private void jb26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb26ActionPerformed
+        String codS = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Código de socio:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                codS = str;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Código no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        String codA = "";
+        try {
+            Object input = JOptionPane.showInputDialog(this, "Código de actividad:", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (input != null) {
+                String str = String.valueOf(input);
+                str = Filtro.mayus(str);
+                str = Filtro.tildes(str);
+                codA = str;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Código no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        Session sesion = sessionFactory.openSession();
+        Transaction tr = sesion.beginTransaction();
+        try {
+            Socio s = sesion.get(Socio.class, codS);
+            Actividad a = sesion.get(Actividad.class, codA);
+            if (s != null && a != null) {
+                a.altaSocio(s);
+                sesion.saveOrUpdate(a);
+                sesion.saveOrUpdate(s);
+                tr.commit();
+                JFrame frame = new JFrame("16. Inscripción de " + s.getNumeroSocio() + " en " + a.getNombre());
+                Output.run(frame, 2160, 480);
+                System.out.println(a.getNombre() + ":\n");
+                String str = String.format("%-6s %-30s %-9s %-10s %-9s %-32s %-10s %8s\n", "Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría");
+                System.out.println(str);
+                for (Socio socio : a.getSocios()) {
+                    System.out.println(socio.mostrar());
+                }
+                System.out.println("\nSocio inscrito correctamente.");
+            } else {
+                throw new Exception("Socio/Actividad no encontrados");
+            }
+        } catch (Exception e) {
+            tr.rollback();
+            JFrame frame = new JFrame("Error");
+                Output.run(frame, 2160, 240);
+            System.out.println("Error en la inserión: " + e.getMessage());
+        } finally {
+            if (sesion != null && sesion.isOpen()) {
+                sesion.close();
+            }
+        }
+    }//GEN-LAST:event_jb26ActionPerformed
 
     public static void main(String args[]) {
 
