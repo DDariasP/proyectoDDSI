@@ -15,13 +15,16 @@ Aplicacion/MenuP1$5.class
 Controlador/ControladorMonitor.class
 Controlador/ControladorPrincipal.class
 Aplicacion/MenuP1$15.class
+Vista/VistaActividad.class
 Aplicacion/MenuP1$3.class
 Aplicacion/MenuP1$12.class
 Aplicacion/MenuP1$8.class
+Aplicacion/MenuP2$3.class
 Aplicacion/Filtro.class
 Aplicacion/ProyectoDDSI.class
 Aplicacion/MenuP1$1.class
 Aplicacion/MenuP1$11.class
+Aplicacion/MenuP2$1.class
 Aplicacion/MenuP2.class
 Controlador/ControladorActividad.class
 Config/HibernateUtil.class
@@ -31,9 +34,9 @@ Modelo/MonitorDAO.class
 Modelo/Monitor.class
 Aplicacion/MenuP1$18.class
 Modelo/SocioDAO.class
-Vista/VistaSocio.class
 Aplicacion/MenuP1$4.class
 Vista/VistaMensaje.class
 Aplicacion/MyOutputStream.class
 Aplicacion/MenuP1$9.class
+Aplicacion/MenuP2$2.class
 Aplicacion/MenuP1$16.class

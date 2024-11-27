@@ -1,8 +1,11 @@
 package Aplicacion;
 
+import Controlador.*;
+import Modelo.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import org.hibernate.SessionFactory;
@@ -17,9 +20,11 @@ public class MenuP2 extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuP2
+     *
+     * @param sf
      */
     public MenuP2(SessionFactory sf) {
-        this.sessionFactory = sf;
+        sessionFactory = sf;
         initComponents();
         jb11.setName("11");
         jb12.setName("12");
@@ -66,10 +71,25 @@ public class MenuP2 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jb11.setText("1. Alta de un socio");
+        jb11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb11ActionPerformed(evt);
+            }
+        });
 
         jb12.setText("2. Información de actividad");
+        jb12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb12ActionPerformed(evt);
+            }
+        });
 
         jb13.setText("3. Actividades de un socio");
+        jb13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,6 +117,29 @@ public class MenuP2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    //1. Alta de un socio
+    private void jb11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb11ActionPerformed
+        ControladorSocio cs = new ControladorSocio(sessionFactory);
+        ArrayList<Socio> listaS = cs.listaSocio();
+        cs.altaSocio(listaS);
+    }//GEN-LAST:event_jb11ActionPerformed
+
+    //2. Información de actividad
+    private void jb12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb12ActionPerformed
+        ControladorMonitor cm = new ControladorMonitor(sessionFactory);
+        ArrayList<Monitor> listaM = cm.listaMonitor();
+        ControladorActividad ca = new ControladorActividad(sessionFactory);
+        ca.actividadMonitor(listaM);
+    }//GEN-LAST:event_jb12ActionPerformed
+
+    //3. Actividades de un socio
+    private void jb13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb13ActionPerformed
+        ControladorSocio cs = new ControladorSocio(sessionFactory);
+        ArrayList<Socio> listaS = cs.listaSocio();
+        ControladorActividad ca = new ControladorActividad(sessionFactory);
+        ca.actividadSocio(listaS);
+    }//GEN-LAST:event_jb13ActionPerformed
 
     /**
      * @param args the command line arguments
