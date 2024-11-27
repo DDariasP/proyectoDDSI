@@ -4,6 +4,15 @@
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Aplicacion/Output.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Aplicacion/ProyectoDDSI.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Config/HibernateUtil.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorActividad.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorMonitor.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorPrincipal.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorSocio.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/Actividad.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/ActividadDAO.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/Monitor.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/MonitorDAO.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/Socio.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/SocioDAO.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaMensaje.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaSocio.java
