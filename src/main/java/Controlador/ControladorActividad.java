@@ -55,7 +55,7 @@ public class ControladorActividad {
                 throw new Exception();
             }
         } catch (Exception e) {
-            VistaMensaje.mensajeConsola(e.getMessage());
+//            VistaMensaje.mensajeConsola(e.getMessage());
         }
     }
 
@@ -90,7 +90,7 @@ public class ControladorActividad {
                 throw new Exception();
             }
         } catch (Exception e) {
-            VistaMensaje.mensajeConsola(e.getMessage());
+//            VistaMensaje.mensajeConsola(e.getMessage());
         }
     }
 
@@ -104,7 +104,7 @@ public class ControladorActividad {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            VistaMensaje.mensajeConsola("Error en Actividad: " + e.getMessage());
+//            VistaMensaje.mensajeConsola("Error en Actividad: " + e.getMessage());
         } 
         return actividades;
     }

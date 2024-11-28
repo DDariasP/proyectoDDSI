@@ -2,6 +2,7 @@ package Controlador;
 
 import Aplicacion.*;
 import Config.HibernateUtil;
+import Vista.*;
 import javax.swing.JFrame;
 import org.hibernate.SessionFactory;
 
@@ -13,14 +14,9 @@ public class ControladorPrincipal {
 
     private final SessionFactory sessionFactory;
 
-    public ControladorPrincipal() {
-        this.sessionFactory = HibernateUtil.getSessionFactory();
-        
-        MenuP2 m = new MenuP2(sessionFactory);
-        m.setTitle("DDSI - Práctica 2");
-        m.setBounds(0, 0, 600,450);
-        m.setVisible(true);
-        m.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    ControladorPrincipal(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+        VistaPrincipal cc = new VistaPrincipal();
     }
 
 }

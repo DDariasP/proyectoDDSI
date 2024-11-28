@@ -31,7 +31,7 @@ public class ControladorMonitor {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            VistaMensaje.mensajeConsola("Error en Monitor: " + e.getMessage());
+//            VistaMensaje.mensajeConsola("Error en Monitor: " + e.getMessage());
         } 
         return monitores;
     }

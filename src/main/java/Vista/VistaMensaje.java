@@ -1,7 +1,10 @@
 package Vista;
 
-import Aplicacion.Output;
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -9,12 +12,26 @@ import javax.swing.JFrame;
  */
 public class VistaMensaje {
 
-    public static void mensajeConsola(String texto) {
-        JFrame frame = new JFrame("Mensaje");
-        Output.run(frame, 720, 480);
-        System.out.println("***************************************");
-        System.out.println(texto);
-        System.out.println("***************************************");
+    public static void Mensaje(Component c, String e, String tipo) {
+        UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.BOLD, 24));
+        UIManager.put("OptionPane.messageForeground", Color.LIGHT_GRAY);
+        UIManager.put("OptionPane.buttonFont", new Font("Monospaced", Font.BOLD, 24));
+        UIManager.put("Button.background", Color.LIGHT_GRAY);
+        UIManager.put("OptionPane.background", Color.DARK_GRAY);
+        UIManager.put("Panel.background", Color.DARK_GRAY);
+        UIManager.put("TextField.font", new Font("Monospaced", Font.BOLD, 24));
+        UIManager.put("TextField.background", Color.LIGHT_GRAY);
+        switch (tipo) {
+            case "Error":
+                JOptionPane.showMessageDialog(c, e, tipo, JOptionPane.ERROR_MESSAGE);
+                break;
+            case "Info":
+                JOptionPane.showMessageDialog(c, e, tipo, JOptionPane.INFORMATION_MESSAGE);
+                break;
+            default:
+                JOptionPane.showMessageDialog(c, e, tipo, JOptionPane.WARNING_MESSAGE);
+                break;
+        }
     }
 
 }

@@ -6,6 +6,7 @@
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Aplicacion/ProyectoDDSI.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Config/HibernateUtil.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorActividad.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorConexion.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorMonitor.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorPrincipal.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Controlador/ControladorSocio.java
@@ -16,4 +17,6 @@
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/Socio.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/SocioDAO.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaActividad.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaConexion.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaMensaje.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaPrincipal.java

@@ -74,7 +74,7 @@ public class ControladorSocio {
                 }
                 s = new Socio(num, "Nuevo Socio", dni, "XX/XX/19XX", "123456789", "nombre@gmail.com", "XX/XX/2024", 'A');
             } catch (Exception e) {
-                VistaMensaje.mensajeConsola(e.getMessage());
+//                VistaMensaje.mensajeConsola(e.getMessage());
             }
         }
 
@@ -85,10 +85,10 @@ public class ControladorSocio {
             try {
                 socioDAO.insertaSocio(sesion, s);
                 tr.commit();
-                VistaMensaje.mensajeConsola("Socio insertado correctamente.");
+//                VistaMensaje.mensajeConsola("Socio insertado correctamente.");
             } catch (Exception e) {
                 tr.rollback();
-                VistaMensaje.mensajeConsola("Error en la inserión: " + e.getMessage());
+//                VistaMensaje.mensajeConsola("Error en la inserión: " + e.getMessage());
             } finally {
                 if (sesion.isOpen()) {
                     sesion.close();
@@ -107,7 +107,7 @@ public class ControladorSocio {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-            VistaMensaje.mensajeConsola("Error en Socio: " + e.getMessage());
+//            VistaMensaje.mensajeConsola("Error en Socio: " + e.getMessage());
         } 
         return socios;
     }
