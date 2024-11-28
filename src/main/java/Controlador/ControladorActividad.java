@@ -49,7 +49,7 @@ public class ControladorActividad {
                 if (!encontrado) {
                     throw new Exception("DNI no existe");
                 } else {
-                    VistaActividad.muestraActividades(act);
+//                    VistaActividad.muestraActividades(act);
                 }
             } else {
                 throw new Exception();
@@ -84,7 +84,7 @@ public class ControladorActividad {
                 if (!encontrado) {
                     throw new Exception("Numero de socio no existe");
                 } else {
-                    VistaActividad.muestraActividades(act);
+//                    VistaActividad.muestraActividades(act);
                 }
             } else {
                 throw new Exception();

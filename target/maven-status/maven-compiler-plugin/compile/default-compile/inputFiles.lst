@@ -18,5 +18,8 @@
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Modelo/SocioDAO.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaActividad.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaConexion.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaInicio.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaMensaje.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaMonitor.java
 /home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaPrincipal.java
+/home/diego/NetBeansProjects/proyectoDDSI/src/main/java/Vista/VistaSocio.java

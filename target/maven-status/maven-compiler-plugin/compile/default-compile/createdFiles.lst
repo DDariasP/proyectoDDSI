@@ -1,6 +1,7 @@
 Aplicacion/MenuP1$2.class
 Aplicacion/MenuP1$17.class
 Modelo/Actividad.class
+Vista/VistaPrincipal$4.class
 Aplicacion/MenuP1$10.class
 Aplicacion/MenuP1$20.class
 Vista/VistaConexion.class
@@ -20,6 +21,7 @@ Config/HibernateUtil.class
 Vista/VistaPrincipal.class
 Aplicacion/MenuP1$6.class
 Modelo/MonitorDAO.class
+Vista/VistaPrincipal$3.class
 Aplicacion/MenuP1$18.class
 Aplicacion/MyOutputStream.class
 Aplicacion/MenuP1$9.class
@@ -28,6 +30,8 @@ Aplicacion/MenuP1$7.class
 Aplicacion/MenuP1$19.class
 Aplicacion/MenuP1.class
 Modelo/ActividadDAO.class
+Vista/VistaInicio.class
+Vista/VistaPrincipal$2.class
 Modelo/Socio.class
 Aplicacion/Output.class
 Controlador/ControladorMonitor.class
@@ -36,13 +40,16 @@ Aplicacion/MenuP1$3.class
 Aplicacion/MenuP1$12.class
 Aplicacion/Filtro.class
 Aplicacion/MenuP1$1.class
+Vista/VistaPrincipal$5.class
 Aplicacion/MenuP2.class
 Aplicacion/MenuP1$13.class
 Modelo/Monitor.class
 Modelo/SocioDAO.class
+Vista/VistaSocio.class
 Aplicacion/MenuP1$4.class
 Vista/VistaMensaje.class
 Aplicacion/MenuP2$2.class
 Aplicacion/MenuP1$16.class
 Vista/VistaConexion$2.class
+Vista/VistaMonitor.class
 Vista/VistaPrincipal$1.class

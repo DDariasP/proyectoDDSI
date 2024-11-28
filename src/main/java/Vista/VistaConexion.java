@@ -7,7 +7,7 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author diego
+ * @author Diego Francisco Darias Pino
  */
 public class VistaConexion extends javax.swing.JFrame {
 
