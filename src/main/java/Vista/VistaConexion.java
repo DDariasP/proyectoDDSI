@@ -21,9 +21,9 @@ public class VistaConexion extends javax.swing.JFrame {
     public VistaConexion() {
         initComponents();
         jbEnter.setForeground(Color.BLACK);
-        jbClose.setForeground(Color.WHITE);
+        jbClose.setForeground(Color.BLACK);
         jbEnter.setBackground(Color.LIGHT_GRAY);
-        jbClose.setBackground(Color.DARK_GRAY);
+        jbClose.setBackground(Color.LIGHT_GRAY);
         jbEnter.setFont(new Font("Monospaced", Font.BOLD, 20));
         jbClose.setFont(new Font("Monospaced", Font.BOLD, 20));
 
@@ -41,7 +41,7 @@ public class VistaConexion extends javax.swing.JFrame {
         jfUser.setHorizontalAlignment(SwingConstants.CENTER);
         jfPass.setHorizontalAlignment(SwingConstants.CENTER);
 
-        getContentPane().setBackground(Color.BLACK);
+        getContentPane().setBackground(Color.DARK_GRAY);
         this.pack();
     }
 

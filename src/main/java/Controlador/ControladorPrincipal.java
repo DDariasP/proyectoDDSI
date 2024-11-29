@@ -25,7 +25,7 @@ public class ControladorPrincipal {
         VistaPrincipal vp = new VistaPrincipal(cm, cs, ca);
         vp.setTitle("Gestión del gimnasio \"Strength Haven\"");
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        vp.setLocation(size.width / 8, size.height / 6);
+        vp.setLocation(0, size.height / 7);
         vp.setVisible(true);
         vp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
