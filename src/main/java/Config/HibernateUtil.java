@@ -28,8 +28,8 @@ public class HibernateUtil {
             if (serviceRegistry != null) {
                 StandardServiceRegistryBuilder.destroy(serviceRegistry);
             }
-            return null;
         }
+        return null;
     }
 
     public static SessionFactory getSessionFactory() {

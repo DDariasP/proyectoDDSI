@@ -1,10 +1,10 @@
 package Vista;
 
+import Controlador.*;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPanel;
-import org.hibernate.SessionFactory;
 
 /**
  *
@@ -17,9 +17,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VistaPrincipal
      *
-     * @param sf
+     * @param cm
+     * @param cs
+     * @param ca
      */
-    public VistaPrincipal(SessionFactory sf) {
+    public VistaPrincipal(ControladorMonitor cm, ControladorSocio cs, ControladorActividad ca) {
         initComponents();
         this.setLayout(new CardLayout());
         jmBar.setBackground(Color.DARK_GRAY);
@@ -38,7 +40,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmM.setForeground(Color.WHITE);
         jmM.setFont(new Font("Monospaced", Font.BOLD, 24));
         jmM.setBackground(Color.DARK_GRAY);
-        jpM = VistaMonitor.generar(sf);
+        jpM = VistaMonitor.generar(cm);
         this.add(jpM);
 
         jMenu3.setForeground(Color.WHITE);
@@ -46,7 +48,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmS.setForeground(Color.WHITE);
         jmS.setFont(new Font("Monospaced", Font.BOLD, 24));
         jmS.setBackground(Color.DARK_GRAY);
-        jpS = VistaSocio.generar(sf);
+        jpS = VistaSocio.generar(cs);
         this.add(jpS);
 
         jMenu4.setForeground(Color.WHITE);
@@ -54,7 +56,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmA.setForeground(Color.WHITE);
         jmA.setFont(new Font("Monospaced", Font.BOLD, 24));
         jmA.setBackground(Color.DARK_GRAY);
-        jpA = VistaActividad.generar(sf);
+        jpA = VistaActividad.generar(ca);
         this.add(jpA);
 
         jMenu5.setForeground(Color.WHITE);
@@ -155,11 +157,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 91, Short.MAX_VALUE)
+            .addGap(0, 79, Short.MAX_VALUE)
         );
 
         pack();

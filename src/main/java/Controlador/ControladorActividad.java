@@ -2,7 +2,6 @@ package Controlador;
 
 import Aplicacion.*;
 import Modelo.*;
-import Vista.*;
 import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.JOptionPane;
@@ -105,7 +104,7 @@ public class ControladorActividad {
         } catch (Exception e) {
             tr.rollback();
 //            VistaMensaje.mensajeConsola("Error en Actividad: " + e.getMessage());
-        } 
+        }
         return actividades;
     }
 

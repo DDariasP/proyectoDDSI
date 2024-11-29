@@ -45,6 +45,7 @@ Aplicacion/MenuP2.class
 Aplicacion/MenuP1$13.class
 Modelo/Monitor.class
 Modelo/SocioDAO.class
+Vista/VistaActividad$1.class
 Vista/VistaSocio.class
 Aplicacion/MenuP1$4.class
 Vista/VistaMensaje.class

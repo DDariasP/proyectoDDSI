@@ -12,14 +12,20 @@ import org.hibernate.SessionFactory;
  */
 public class ControladorPrincipal {
 
-    private final SessionFactory sessionFactory;
+    private final SessionFactory sf;
+    private final ControladorMonitor cm;
+    private final ControladorSocio cs;
+    private final ControladorActividad ca;
 
     ControladorPrincipal(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-        VistaPrincipal vp = new VistaPrincipal(this.sessionFactory);
+        this.sf = sessionFactory;
+        cm = new ControladorMonitor(sf);
+        cs = new ControladorSocio(sf);
+        ca = new ControladorActividad(sf);
+        VistaPrincipal vp = new VistaPrincipal(cm, cs, ca);
         vp.setTitle("Gestión del gimnasio \"Strength Haven\"");
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        vp.setLocation(size.width / 3, size.height / 3);
+        vp.setLocation(size.width / 8, size.height / 6);
         vp.setVisible(true);
         vp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }

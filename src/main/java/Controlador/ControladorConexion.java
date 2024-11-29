@@ -19,12 +19,13 @@ public class ControladorConexion {
     public static ControladorPrincipal cp;
 
     public ControladorConexion() {
-        VistaConexion vc = new VistaConexion();
-        vc.setTitle("Acceso a la Aplicación");
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        vc.setLocation(size.width / 3, size.height / 3);
-        vc.setVisible(true);
-        vc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ControladorConexion.nuevaSesion(null, "", "");
+//        VistaConexion vc = new VistaConexion();
+//        vc.setTitle("Acceso a la Aplicación");
+//        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+//        vc.setLocation(size.width / 3, size.height / 3);
+//        vc.setVisible(true);
+//        vc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public static void nuevaSesion(VistaConexion vc, String u, String p) {
@@ -34,11 +35,12 @@ public class ControladorConexion {
 //        pass = p;
         sessionFactory = HibernateUtil.buildSessionFactory();
         if (sessionFactory == null) {
-            VistaMensaje.Mensaje(vc, "Error al introducir las credenciales.", "Error");
+//            VistaMensaje.Mensaje(vc, "Error al introducir las credenciales.", "Error");
         } else {
-            VistaMensaje.Mensaje(vc, "Conexión correcta con Hibernate.\nVa a acceder a la Aplicación.", "Info");
-            vc.close();
+//            VistaMensaje.Mensaje(vc, "Conexión correcta con Hibernate.\nVa a acceder a la Aplicación.", "Info");
+//            vc.close();
             cp = new ControladorPrincipal(sessionFactory);
         }
     }
+
 }
