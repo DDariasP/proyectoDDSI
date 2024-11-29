@@ -136,6 +136,7 @@ public class VistaConexion extends javax.swing.JFrame {
         jfUser.setText("");
         jfPass.setText("");
         if (!user.equals("") && !pass.equals("")) {
+            this.dispose();
             ControladorConexion.nuevaSesion(this, user, pass);
         }
     }//GEN-LAST:event_jbEnterActionPerformed
@@ -144,9 +145,6 @@ public class VistaConexion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbCloseActionPerformed
 
-    public void close() {
-        this.dispose();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbClose;

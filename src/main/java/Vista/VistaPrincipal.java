@@ -5,6 +5,8 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPanel;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -12,17 +14,20 @@ import javax.swing.JPanel;
  */
 public class VistaPrincipal extends javax.swing.JFrame {
 
+    private final SessionFactory sf;
     private final JPanel jpO, jpM, jpS, jpA;
 
     /**
      * Creates new form VistaPrincipal
      *
+     * @param sf
      * @param cm
      * @param cs
      * @param ca
      */
-    public VistaPrincipal(ControladorMonitor cm, ControladorSocio cs, ControladorActividad ca) {
+    public VistaPrincipal(SessionFactory sf, ControladorMonitor cm, ControladorSocio cs, ControladorActividad ca) {
         initComponents();
+        this.sf = sf;
         this.setLayout(new CardLayout());
         jmBar.setBackground(Color.DARK_GRAY);
 
@@ -197,6 +202,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void jmXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmXActionPerformed
         this.dispose();
+        try {
+            sf.close();
+        } catch (HibernateException e) {
+        }
+        System.exit(0);
     }//GEN-LAST:event_jmXActionPerformed
 
 

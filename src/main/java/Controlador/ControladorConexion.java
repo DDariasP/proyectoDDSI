@@ -35,9 +35,14 @@ public class ControladorConexion {
         sessionFactory = HibernateUtil.buildSessionFactory();
         if (sessionFactory == null) {
             VistaMensaje.Mensaje(vc, "Error al introducir las credenciales.", "Error");
+            vc = new VistaConexion();
+            vc.setTitle("Acceso a la Aplicación");
+            Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+            vc.setLocation(size.width / 3, size.height / 3);
+            vc.setVisible(true);
+            vc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         } else {
             VistaMensaje.Mensaje(vc, "Conexión correcta con Hibernate.\nVa a acceder a la Aplicación.", "Info");
-            vc.close();
             cp = new ControladorPrincipal(sessionFactory);
         }
     }

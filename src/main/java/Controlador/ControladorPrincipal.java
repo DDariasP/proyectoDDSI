@@ -22,12 +22,12 @@ public class ControladorPrincipal {
         cm = new ControladorMonitor(sf);
         cs = new ControladorSocio(sf);
         ca = new ControladorActividad(sf);
-        VistaPrincipal vp = new VistaPrincipal(cm, cs, ca);
+        VistaPrincipal vp = new VistaPrincipal(sf, cm, cs, ca);
         vp.setTitle("Gestión del gimnasio \"Strength Haven\"");
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         vp.setLocation(0, size.height / 7);
         vp.setVisible(true);
-        vp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }
