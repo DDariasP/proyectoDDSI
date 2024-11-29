@@ -1,9 +1,7 @@
 package Controlador;
 
 import Vista.*;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import org.hibernate.SessionFactory;
 
 /**
@@ -12,22 +10,31 @@ import org.hibernate.SessionFactory;
  */
 public class ControladorPrincipal {
 
-    private final SessionFactory sf;
-    private final ControladorMonitor cm;
-    private final ControladorSocio cs;
-    private final ControladorActividad ca;
+    public static SessionFactory sf;
+    public static JPanel vi, vm, vs, vac;
 
-    ControladorPrincipal(SessionFactory sessionFactory) {
-        this.sf = sessionFactory;
-        cm = new ControladorMonitor(sf);
-        cs = new ControladorSocio(sf);
-        ca = new ControladorActividad(sf);
-        VistaPrincipal vp = new VistaPrincipal(sf, cm, cs, ca);
-        vp.setTitle("Gestión del gimnasio \"Strength Haven\"");
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        vp.setLocation(0, size.height / 7);
-        vp.setVisible(true);
-        vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public static JPanel getVistaInicio(SessionFactory sesion) {
+        sf = sesion;
+        vi = VistaInicio.generar();
+        return vi;
+    }
+
+    public static JPanel getVistaMonitor(SessionFactory sesion) {
+        sf = sesion;
+        vm = VistaMonitor.generar(sf);
+        return vm;
+    }
+
+    public static JPanel getVistaSocio(SessionFactory sesion) {
+        sf = sesion;
+        vs = VistaSocio.generar(sf);
+        return vs;
+    }
+
+    public static JPanel getVistaActividad(SessionFactory sesion) {
+        sf = sesion;
+        vac = VistaActividad.generar(sf);
+        return vac;
     }
 
 }

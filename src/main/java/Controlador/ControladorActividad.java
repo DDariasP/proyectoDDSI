@@ -2,6 +2,7 @@ package Controlador;
 
 import Aplicacion.*;
 import Modelo.*;
+import Vista.*;
 import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.JOptionPane;
@@ -15,11 +16,11 @@ import org.hibernate.Transaction;
  */
 public class ControladorActividad {
 
-    private final SessionFactory sessionFactory;
+    private final SessionFactory sf;
     private final ActividadDAO actividadDAO;
 
-    public ControladorActividad(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public ControladorActividad(SessionFactory sesion) {
+        this.sf = sesion;
         this.actividadDAO = new ActividadDAO();
     }
 
@@ -48,13 +49,13 @@ public class ControladorActividad {
                 if (!encontrado) {
                     throw new Exception("DNI no existe");
                 } else {
-//                    VistaActividad.muestraActividades(act);
+                    //
                 }
             } else {
                 throw new Exception();
             }
         } catch (Exception e) {
-//            VistaMensaje.mensajeConsola(e.getMessage());
+            VistaMensaje.Consola(e.getMessage());
         }
     }
 
@@ -83,19 +84,19 @@ public class ControladorActividad {
                 if (!encontrado) {
                     throw new Exception("Numero de socio no existe");
                 } else {
-//                    VistaActividad.muestraActividades(act);
+                    //
                 }
             } else {
                 throw new Exception();
             }
         } catch (Exception e) {
-//            VistaMensaje.mensajeConsola(e.getMessage());
+            VistaMensaje.Consola(e.getMessage());
         }
     }
 
     public ArrayList<Actividad> listaActividad() {
         ArrayList<Actividad> actividades = null;
-        Session sesion = sessionFactory.openSession();
+        Session sesion = sf.openSession();
         Transaction tr = sesion.beginTransaction();
         //Lee la lista de socios
         try {
@@ -103,7 +104,7 @@ public class ControladorActividad {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-//            VistaMensaje.mensajeConsola("Error en Actividad: " + e.getMessage());
+            VistaMensaje.Consola("Error en Actividad: " + e.getMessage());
         }
         return actividades;
     }

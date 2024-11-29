@@ -12,6 +12,10 @@ import javax.swing.UIManager;
  */
 public class VistaMensaje {
 
+    public static void Consola(String e) {
+        System.out.println(e);
+    }
+
     public static void Mensaje(Component c, String e, String tipo) {
         UIManager.put("OptionPane.messageFont", new Font("Monospaced", Font.BOLD, 24));
         UIManager.put("OptionPane.messageForeground", Color.LIGHT_GRAY);
@@ -22,15 +26,12 @@ public class VistaMensaje {
         UIManager.put("TextField.font", new Font("Monospaced", Font.BOLD, 24));
         UIManager.put("TextField.background", Color.LIGHT_GRAY);
         switch (tipo) {
-            case "Error":
+            case "Error" ->
                 JOptionPane.showMessageDialog(c, e, tipo, JOptionPane.ERROR_MESSAGE);
-                break;
-            case "Info":
+            case "Info" ->
                 JOptionPane.showMessageDialog(c, e, tipo, JOptionPane.INFORMATION_MESSAGE);
-                break;
-            default:
+            default ->
                 JOptionPane.showMessageDialog(c, e, tipo, JOptionPane.WARNING_MESSAGE);
-                break;
         }
     }
 

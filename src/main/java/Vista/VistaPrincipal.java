@@ -3,7 +3,10 @@ package Vista;
 import Controlador.*;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
@@ -20,14 +23,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VistaPrincipal
      *
-     * @param sf
-     * @param cm
-     * @param cs
-     * @param ca
+     * @param sesion
      */
-    public VistaPrincipal(SessionFactory sf, ControladorMonitor cm, ControladorSocio cs, ControladorActividad ca) {
+    public VistaPrincipal(SessionFactory sesion) {
         initComponents();
-        this.sf = sf;
+        sf = sesion;
         this.setLayout(new CardLayout());
         jmBar.setBackground(Color.DARK_GRAY);
 
@@ -36,7 +36,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmO.setForeground(Color.WHITE);
         jmO.setFont(new Font("Monospaced", Font.BOLD, 24));
         jmO.setBackground(Color.DARK_GRAY);
-        jpO = VistaInicio.generar();
+        jpO = ControladorPrincipal.getVistaInicio(sf);
         this.add(jpO);
         jpO.setVisible(true);
 
@@ -45,7 +45,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmM.setForeground(Color.WHITE);
         jmM.setFont(new Font("Monospaced", Font.BOLD, 24));
         jmM.setBackground(Color.DARK_GRAY);
-        jpM = VistaMonitor.generar(cm);
+        jpM = ControladorPrincipal.getVistaMonitor(sf);
         this.add(jpM);
 
         jMenu3.setForeground(Color.WHITE);
@@ -53,7 +53,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmS.setForeground(Color.WHITE);
         jmS.setFont(new Font("Monospaced", Font.BOLD, 24));
         jmS.setBackground(Color.DARK_GRAY);
-        jpS = VistaSocio.generar(cs);
+        jpS = ControladorPrincipal.getVistaSocio(sf);
         this.add(jpS);
 
         jMenu4.setForeground(Color.WHITE);
@@ -61,7 +61,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmA.setForeground(Color.WHITE);
         jmA.setFont(new Font("Monospaced", Font.BOLD, 24));
         jmA.setBackground(Color.DARK_GRAY);
-        jpA = VistaActividad.generar(ca);
+        jpA = ControladorPrincipal.getVistaActividad(sf);
         this.add(jpA);
 
         jMenu5.setForeground(Color.WHITE);
@@ -71,6 +71,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmX.setBackground(Color.DARK_GRAY);
 
         this.pack();
+        this.setTitle("Gestión del gimnasio \"Strength Haven\"");
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(0, size.height / 7);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**

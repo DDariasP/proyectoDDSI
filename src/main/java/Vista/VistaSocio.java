@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -24,6 +25,8 @@ import javax.swing.table.TableColumn;
  */
 public class VistaSocio {
 
+    public static SessionFactory sf;
+    public static ControladorSocio cs;
     public static JScrollPane sp;
     public static JPanel panel;
     public static JLabel label;
@@ -33,7 +36,8 @@ public class VistaSocio {
     public static JTableHeader header;
     public static DefaultTableCellRenderer renderH;
 
-    public static JPanel generar(ControladorSocio cs) {
+    public static JPanel generar(SessionFactory sesion) {
+        sf = sesion;
         String[] columnas = {"Número", "Nombre", "DNI", "FechaNac", "Teléfono", "Correo", "FechaEnt", "Categoría"};
         model = new DefaultTableModel(columnas, 0);
         table = new JTable();
@@ -42,7 +46,7 @@ public class VistaSocio {
         table.setFillsViewportHeight(true);
         table.setGridColor(Color.WHITE);
 
-        VistaSocio.rellenar(cs);
+        VistaSocio.rellenar();
 
         renderT = new DefaultTableCellRenderer() {
             @Override
@@ -94,7 +98,8 @@ public class VistaSocio {
         return panel;
     }
 
-    public static void rellenar(ControladorSocio cs) {
+    public static void rellenar() {
+        cs = new ControladorSocio(sf);
         ArrayList<Socio> lista = cs.listaSocio();
         Object[] fila = new Object[8];
         for (Socio s : lista) {

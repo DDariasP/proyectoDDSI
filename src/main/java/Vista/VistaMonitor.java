@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -24,6 +25,8 @@ import javax.swing.table.TableColumn;
  */
 public class VistaMonitor {
 
+    public static SessionFactory sf;
+    public static ControladorMonitor cm;
     public static JScrollPane sp;
     public static JPanel panel;
     public static JLabel label;
@@ -33,7 +36,8 @@ public class VistaMonitor {
     public static JTableHeader header;
     public static DefaultTableCellRenderer renderH;
 
-    public static JPanel generar(ControladorMonitor cm) {
+    public static JPanel generar(SessionFactory sesion) {
+        sf = sesion;
         String[] columnas = {"Código", "Nombre", "DNI", "Teléfono", "Correo", "FechaEnt", "Nick"};
         model = new DefaultTableModel(columnas, 0);
         table = new JTable();
@@ -42,7 +46,7 @@ public class VistaMonitor {
         table.setFillsViewportHeight(true);
         table.setGridColor(Color.WHITE);
 
-        VistaMonitor.rellenar(cm);
+        VistaMonitor.rellenar();
 
         renderT = new DefaultTableCellRenderer() {
             @Override
@@ -94,7 +98,8 @@ public class VistaMonitor {
         return panel;
     }
 
-    public static void rellenar(ControladorMonitor cm) {
+    public static void rellenar() {
+        cm = new ControladorMonitor(sf);
         ArrayList<Monitor> lista = cm.listaMonitor();
         Object[] fila = new Object[7];
         for (Monitor m : lista) {

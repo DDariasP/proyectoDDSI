@@ -15,11 +15,11 @@ import org.hibernate.Transaction;
  */
 public class ControladorSocio {
 
-    private final SessionFactory sessionFactory;
+    private final SessionFactory sf;
     private final SocioDAO socioDAO;
 
-    public ControladorSocio(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public ControladorSocio(SessionFactory sesion) {
+        this.sf = sesion;
         this.socioDAO = new SocioDAO();
     }
 
@@ -74,21 +74,21 @@ public class ControladorSocio {
                 }
                 s = new Socio(num, "Nuevo Socio", dni, "XX/XX/19XX", "123456789", "nombre@gmail.com", "XX/XX/2024", 'A');
             } catch (Exception e) {
-//                VistaMensaje.mensajeConsola(e.getMessage());
+                VistaMensaje.Consola(e.getMessage());
             }
         }
 
         //Inserta el socio
         if (s != null) {
-            Session sesion = sessionFactory.openSession();
+            Session sesion = sf.openSession();
             Transaction tr = sesion.beginTransaction();
             try {
                 socioDAO.insertaSocio(sesion, s);
                 tr.commit();
-//                VistaMensaje.mensajeConsola("Socio insertado correctamente.");
+                VistaMensaje.Consola("Socio insertado correctamente.");
             } catch (Exception e) {
                 tr.rollback();
-//                VistaMensaje.mensajeConsola("Error en la inserión: " + e.getMessage());
+                VistaMensaje.Consola("Error en la inserión: " + e.getMessage());
             } finally {
                 if (sesion.isOpen()) {
                     sesion.close();
@@ -99,7 +99,7 @@ public class ControladorSocio {
 
     public ArrayList<Socio> listaSocio() {
         ArrayList<Socio> socios = null;
-        Session sesion = sessionFactory.openSession();
+        Session sesion = sf.openSession();
         Transaction tr = sesion.beginTransaction();
         //Lee la lista de socios
         try {
@@ -107,8 +107,8 @@ public class ControladorSocio {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-//            VistaMensaje.mensajeConsola("Error en Socio: " + e.getMessage());
-        } 
+            VistaMensaje.Consola("Error en Socio: " + e.getMessage());
+        }
         return socios;
     }
 

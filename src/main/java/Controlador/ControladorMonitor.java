@@ -13,17 +13,17 @@ import org.hibernate.Transaction;
  */
 public class ControladorMonitor {
 
-    private final SessionFactory sessionFactory;
+    private final SessionFactory sf;
     private final MonitorDAO monitorDAO;
 
-    public ControladorMonitor(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-        this.monitorDAO = new MonitorDAO();
+    public ControladorMonitor(SessionFactory sesion) {
+        sf = sesion;
+        monitorDAO = new MonitorDAO();
     }
 
     public ArrayList<Monitor> listaMonitor() {
         ArrayList<Monitor> monitores = null;
-        Session sesion = sessionFactory.openSession();
+        Session sesion = sf.openSession();
         Transaction tr = sesion.beginTransaction();
         //Lee la lista de monitores
         try {
@@ -31,9 +31,9 @@ public class ControladorMonitor {
             tr.commit();
         } catch (Exception e) {
             tr.rollback();
-//            VistaMensaje.mensajeConsola("Error en Monitor: " + e.getMessage());
-        } 
+            VistaMensaje.Consola("Error en Monitor: " + e.getMessage());
+        }
         return monitores;
     }
-    
+
 }

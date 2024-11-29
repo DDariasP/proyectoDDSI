@@ -1,6 +1,6 @@
 package Aplicacion;
 
-import Controlador.*;
+import Vista.*;
 
 /**
  * Inicio de la aplicación.
@@ -11,7 +11,7 @@ public class ProyectoDDSI {
 
     public static void main(String[] args) {
 
-        ControladorConexion cc = new ControladorConexion();
+        VistaConexion vc = new VistaConexion();
 
     }
 

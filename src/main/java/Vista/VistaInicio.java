@@ -15,20 +15,24 @@ import javax.swing.JPanel;
  */
 public class VistaInicio {
 
+    public static JPanel panel;
+    public static JLabel label;
+    public static Image imagen;
+
     public static JPanel generar() {
-        JPanel jp = new JPanel();
-        jp.setBackground(Color.DARK_GRAY);
+        panel = new JPanel();
+        panel.setBackground(Color.DARK_GRAY);
         URL imageURL = VistaInicio.class.getResource("/i.png");
         ImageIcon imageIcon;
         try {
-            Image im = ImageIO.read(imageURL);
-            imageIcon = new ImageIcon(im);
+            imagen = ImageIO.read(imageURL);
+            imageIcon = new ImageIcon(imagen);
         } catch (IOException ex) {
             imageIcon = new ImageIcon("src/main/resources/i.png");
         }
-        JLabel label = new JLabel(imageIcon);
-        jp.add(label);
-        return jp;
+        label = new JLabel(imageIcon);
+        panel.add(label);
+        return panel;
     }
 
 }

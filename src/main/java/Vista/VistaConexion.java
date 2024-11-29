@@ -2,7 +2,10 @@ package Vista;
 
 import Controlador.*;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 
 /**
@@ -43,6 +46,11 @@ public class VistaConexion extends javax.swing.JFrame {
 
         getContentPane().setBackground(Color.DARK_GRAY);
         this.pack();
+        this.setTitle("Acceso a la Aplicación");
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(size.width / 3, size.height / 3);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

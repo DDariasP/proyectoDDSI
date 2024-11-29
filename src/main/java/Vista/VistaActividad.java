@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -24,6 +25,8 @@ import javax.swing.table.TableColumn;
  */
 public class VistaActividad {
 
+    public static SessionFactory sf;
+    public static ControladorActividad ca;
     public static JScrollPane sp;
     public static JPanel panel;
     public static JLabel label;
@@ -33,7 +36,8 @@ public class VistaActividad {
     public static JTableHeader header;
     public static DefaultTableCellRenderer renderH;
 
-    public static JPanel generar(ControladorActividad ca) {
+    public static JPanel generar(SessionFactory sesion) {
+        sf = sesion;
         String[] columnas = {"ID", "Nombre", "Día", "Hora", "PrecioBaseMes", "MonitorResponsable"};
         model = new DefaultTableModel(columnas, 0);
         table = new JTable();
@@ -42,7 +46,7 @@ public class VistaActividad {
         table.setFillsViewportHeight(true);
         table.setGridColor(Color.WHITE);
 
-        VistaActividad.rellenar(ca);
+        VistaActividad.rellenar();
 
         renderT = new DefaultTableCellRenderer() {
             @Override
@@ -94,7 +98,8 @@ public class VistaActividad {
         return panel;
     }
 
-    public static void rellenar(ControladorActividad ca) {
+    public static void rellenar() {
+        ca = new ControladorActividad(sf);
         ArrayList<Actividad> lista = ca.listaActividad();
         Object[] fila = new Object[6];
         for (Actividad a : lista) {
